@@ -1,12 +1,11 @@
 <script lang="ts">
     let token = $props();
 </script>
-
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-
 {#if token.data.token != null}
     <p>Hello, user</p>
+    <a href="http://localhost:5077/api/oauth/signout">Sign out</a>
+    <a href="http://localhost:5077/requests">Requests</a>
 {:else}
     <p>Who?</p>
+    <a href="http://localhost:5077/api/oauth/auth">Sign in dummy</a>
 {/if}

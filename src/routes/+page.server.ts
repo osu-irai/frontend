@@ -1,5 +1,5 @@
 export function load( { cookies }) {
     return {
-        token: cookies.get(".AspNetCore.InternalCookies")
+        token: cookies.get("osuToken")
     };
 }

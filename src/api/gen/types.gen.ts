@@ -74,7 +74,7 @@ export type PostApiRequestsData = {
     body?: never;
     path?: never;
     query?: {
-        sourceToken?: string;
+        sourceId?: number;
         destinationId?: number;
         beatmapId?: number;
     };
@@ -92,6 +92,58 @@ export type PostApiRequestsErrors = {
 export type PostApiRequestsError = PostApiRequestsErrors[keyof PostApiRequestsErrors];
 
 export type PostApiRequestsResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetApiRequestsSelfData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/requests/self';
+};
+
+export type GetApiRequestsSelfErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetails;
+};
+
+export type GetApiRequestsSelfError = GetApiRequestsSelfErrors[keyof GetApiRequestsSelfErrors];
+
+export type GetApiRequestsSelfResponses = {
+    /**
+     * OK
+     */
+    200: ReceivedRequestResponse;
+};
+
+export type GetApiRequestsSelfResponse = GetApiRequestsSelfResponses[keyof GetApiRequestsSelfResponses];
+
+export type PostApiRequestsSelfData = {
+    body?: never;
+    path?: never;
+    query?: {
+        destinationId?: number;
+        beatmapId?: number;
+    };
+    url: '/api/requests/self';
+};
+
+export type PostApiRequestsSelfErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetails;
+    default: ProblemDetails;
+};
+
+export type PostApiRequestsSelfError = PostApiRequestsSelfErrors[keyof PostApiRequestsSelfErrors];
+
+export type PostApiRequestsSelfResponses = {
     /**
      * OK
      */
