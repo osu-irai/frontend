@@ -98,6 +98,32 @@ export type PostApiRequestsResponses = {
     200: unknown;
 };
 
+export type DeleteApiRequestsSelfData = {
+    body?: never;
+    path?: never;
+    query?: {
+        requestId?: number;
+    };
+    url: '/api/requests/self';
+};
+
+export type DeleteApiRequestsSelfErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetails;
+    default: ProblemDetails;
+};
+
+export type DeleteApiRequestsSelfError = DeleteApiRequestsSelfErrors[keyof DeleteApiRequestsSelfErrors];
+
+export type DeleteApiRequestsSelfResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type GetApiRequestsSelfData = {
     body?: never;
     path?: never;

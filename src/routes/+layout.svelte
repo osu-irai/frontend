@@ -5,3 +5,9 @@
 </script>
 
 {@render children()}
+
+<style>
+    html {
+        background-color: var(--ctp-macchiato-base);
+    }
+</style>

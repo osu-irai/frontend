@@ -1,0 +1,6 @@
+@import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
+
+html {
+    background: var(--ctp-macchiato-base);
+    color: var(--ctp-macchiato-text);
+}
