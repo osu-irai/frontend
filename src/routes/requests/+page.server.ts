@@ -1,5 +1,4 @@
-import request from "../../components/request.svelte";
-import type {GetApiRequestsSelfResponse, GetApiRequestsSelfResponses} from "../../api/gen/index.ts";
+import type {GetApiRequestsSelfResponses} from "../../api/gen/index.ts";
 
 export async function load( { cookies } ) {
     const headers = new Headers();
