@@ -16,5 +16,8 @@ export default defineConfig({
 			}
 		},
 		cors: true,
+		watch: {
+			ignored: (file) => file.endsWith("bck")
+		}
 	}
 });

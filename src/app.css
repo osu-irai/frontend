@@ -5,3 +5,7 @@ html {
     color: var(--ctp-macchiato-text);
     font-family: Iosevka, serif;
 }
+
+a {
+    color: var(--ctp-macchiato-blue);
+}

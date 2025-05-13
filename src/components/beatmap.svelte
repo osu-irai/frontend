@@ -3,9 +3,7 @@
     function getSource(id: number) {
         return `http://assets.ppy.sh/beatmaps/${id}/covers/cover.jpg`
     }
-    let { data } = $props();
-    let beatmap: BeatmapDto = data;
-    console.log(data);
+    let { beatmap }: { beatmap: BeatmapDto} = $props();
     let source = getSource(beatmap.beatmapsetId);
 </script>
 
