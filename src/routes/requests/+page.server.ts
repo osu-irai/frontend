@@ -9,8 +9,9 @@ export async function load( { cookies } ) {
         method: "GET",
         headers: headers
     });
-    const redata: GetApiRequestsSelfResponses = await data.json();
+    const requests: GetApiRequestsSelfResponses = await data.json();
     return {
-        data: redata
+        requests: requests,
+        token: osuToken
     };
 }

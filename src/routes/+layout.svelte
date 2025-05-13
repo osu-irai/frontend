@@ -2,10 +2,10 @@
 	import '../app.css';
   import Navbar from '../components/Navbar.svelte';
 
-	let { children } = $props();
+	let { data, children } = $props();
 </script>
 
-<Navbar />
+<Navbar is_signed_in={data.token == null ? false : true}/>
 
 {@render children()}
 

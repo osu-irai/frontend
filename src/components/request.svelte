@@ -1,22 +1,26 @@
 <script lang="ts">
-    import type {ReceivedRequestResponse} from "../api/gen";
-    import Beatmap from "./beatmap.svelte";
-    import Delete from "./icons/Delete.svelte";
-    let { data } = $props();
-    let request: ReceivedRequestResponse = data;
+  import type { ReceivedRequestResponse } from "../api/gen";
+  import Beatmap from "./beatmap.svelte";
+  import Delete from "./icons/Delete.svelte";
+  let { data, token } = $props();
+  let nodeRef = $state();
+  let request: ReceivedRequestResponse = data;
 </script>
 
-<div class="request">
-    <div class="source">
-      <div class="user">
-        <img src="{request.from.avatarUrl}" alt="Avatar of request author {request.from.username}">
-        <p>{request.from.username}</p>
-      </div>
-      <div class="button-side">
-        <Delete id={request.id}></Delete>
-      </div>
+<div bind:this={nodeRef} class="request">
+  <div class="source">
+    <div class="user">
+      <img
+        src={request.from.avatarUrl}
+        alt="Avatar of request author {request.from.username}"
+      />
+      <p>{request.from.username}</p>
     </div>
-    <Beatmap beatmap={request.beatmap}/>
+    <div class="button-side">
+      <Delete id={request.id} {token} {nodeRef}></Delete>
+    </div>
+  </div>
+  <Beatmap beatmap={request.beatmap} />
 </div>
 
 <style lang="scss">
