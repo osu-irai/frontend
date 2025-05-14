@@ -1,11 +1,11 @@
 <script lang="ts">
   import NavbarButton from "./navbarButton.svelte";
-  let { is_signed_in } = $props();
+  import { isAuthenticated } from "../routes/CookieStore.svelte";
 </script>
 
 <nav>
   <NavbarButton text="Home" destination="/"></NavbarButton>
-  {#if is_signed_in}
+  {#if isAuthenticated()}
     <NavbarButton text="Sign out" destination="/api/oauth/signout"
     ></NavbarButton>
   {:else}

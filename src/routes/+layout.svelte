@@ -1,16 +1,18 @@
 <script lang="ts">
-	import '../app.css';
-  import Navbar from '../components/Navbar.svelte';
+  import "../app.css";
+  import Navbar from "../components/Navbar.svelte";
+  import { setToken } from "./CookieStore.svelte";
 
-	let { data, children } = $props();
+  let { data, children } = $props();
+  setToken(data.token);
 </script>
 
-<Navbar is_signed_in={data.token == null ? false : true}/>
+<Navbar />
 
 {@render children()}
 
 <style>
-    html {
-        background-color: var(--ctp-macchiato-base);
-    }
+  html {
+    background-color: var(--ctp-macchiato-base);
+  }
 </style>

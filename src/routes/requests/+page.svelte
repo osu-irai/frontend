@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { GetApiRequestsSelfResponse } from "../../api/gen";
   import Request from "../../components/request.svelte";
-  const { data }= $props();
+  const { data } = $props();
 </script>
 
 <p>Your requests</p>

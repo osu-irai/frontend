@@ -2,7 +2,7 @@
   import type { ReceivedRequestResponse } from "../api/gen";
   import Beatmap from "./beatmap.svelte";
   import Delete from "./icons/Delete.svelte";
-  let { data, token } = $props();
+  let { data } = $props();
   let nodeRef = $state();
   let request: ReceivedRequestResponse = data;
 </script>
@@ -17,7 +17,7 @@
       <p>{request.from.username}</p>
     </div>
     <div class="button-side">
-      <Delete id={request.id} {token} {nodeRef}></Delete>
+      <Delete id={request.id} {nodeRef}></Delete>
     </div>
   </div>
   <Beatmap beatmap={request.beatmap} />
