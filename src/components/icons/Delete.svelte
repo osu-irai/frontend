@@ -1,9 +1,10 @@
 <script lang="ts">
   import { getToken } from "../../routes/CookieStore.svelte";
   const headers = new Headers();
+  const token = getToken();
   let { id, nodeRef }: { id: number; token: string; nodeRef: Node } = $props();
   async function delete_request(requestId: number) {
-    headers.append("Cookie", `osuToken=${getToken()}`);
+    headers.append("Cookie", `osuToken=${token}`);
     fetch(`http://localhost:5077/api/requests/self?requestId=${requestId}`, {
       credentials: "include",
       method: "DELETE",

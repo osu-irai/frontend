@@ -6,7 +6,7 @@ export function setToken(token: string) {
   setContext(global_token, token);
 }
 
-export function getToken() {
+export function getToken(): string {
   return getContext(global_token);
 }
 

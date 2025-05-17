@@ -12,6 +12,8 @@
     <NavbarButton text="Sign in" destination="/api/oauth/auth"></NavbarButton>
   {/if}
   <NavbarButton text="Your requests" destination="/requests"></NavbarButton>
+  <NavbarButton text="Create a request!" destination="/requests/create"
+  ></NavbarButton>
 </nav>
 
 <style lang="scss">
