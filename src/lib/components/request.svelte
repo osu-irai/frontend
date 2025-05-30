@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { ReceivedRequestResponse } from "../api/gen";
+  import type { ReceivedRequestResponse } from "../../api/gen";
   import Beatmap from "./beatmap.svelte";
   import Delete from "./icons/Delete.svelte";
   let { data } = $props();
-  let nodeRef = $state();
+  let nodeRef: Node = $state();
   let request: ReceivedRequestResponse = data;
 </script>
 

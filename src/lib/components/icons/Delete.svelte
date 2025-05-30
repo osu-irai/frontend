@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { getToken } from "../../routes/CookieStore.svelte";
+  import { getToken } from "$components/Stores/CookieStore.svelte";
   const headers = new Headers();
   const token = getToken();
-  let { id, nodeRef }: { id: number; token: string; nodeRef: Node } = $props();
+  let { id, nodeRef }: { id: number; nodeRef: Node } = $props();
   async function delete_request(requestId: number) {
     headers.append("Cookie", `osuToken=${token}`);
     fetch(`http://localhost:5077/api/requests/self?requestId=${requestId}`, {
@@ -13,7 +13,7 @@
   }
   const func = () => {
     delete_request(id);
-    nodeRef.parentNode.removeChild(nodeRef);
+    nodeRef.parentNode?.removeChild(nodeRef);
   };
 </script>
 

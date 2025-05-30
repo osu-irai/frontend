@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getToken } from "../routes/CookieStore.svelte";
+  import { getToken } from "./Stores/CookieStore.svelte";
   import { parseFormData } from "./RequestForm";
   const cookie = getToken();
   function makeRequest(
