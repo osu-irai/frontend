@@ -29,7 +29,7 @@
       name="destination"
       type="text"
       required
-      pattern="(?:https:\/\/osu\.ppy\.sh\/users\/)?\d*(?:\/*)"
+      pattern="(?:https:\/\/osu\.ppy\.sh\/users\/)?(\d+)(?:\/.*)?"
     />
     Player
   </label>
@@ -38,7 +38,7 @@
       name="beatmap"
       type="text"
       required
-      pattern="(?:https:\/\/osu.ppy.sh\/beatmapsets\/\d*.*\/)?\d*"
+      pattern="(?:https:\/\/osu\.ppy\.sh\/beatmapsets\/\d+#[a-z]*\/)?(\d+)(?:\/.*)?"
     />
     Beatmap
   </label>

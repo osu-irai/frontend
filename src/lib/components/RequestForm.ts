@@ -1,12 +1,20 @@
+const beatmapRegex: RegExp = RegExp(
+  /(?:https:\/\/osu\.ppy\.sh\/beatmapsets\/\d+#[a-z]*\/)?(\d+)(?:\/.*)?/,
+);
 export function parseBeatmapId(beatmap: string): BeatmapId | null {
-  const lastSepar = beatmap.lastIndexOf("/");
-  const id = beatmap.slice(lastSepar);
-  return parseInt(id) as BeatmapId;
+  const capture = beatmapRegex.exec(beatmap);
+  const beatmapId = capture?.[1] ?? "";
+  return parseInt(beatmapId) as BeatmapId;
 }
 
-// TODO: Stub
+const playerRegex: RegExp = RegExp(
+  /(?:https:\/\/osu\.ppy\.sh\/users\/)?(\d+)(?:\/.*)?/,
+);
 export function parsePlayerId(player: string): PlayerId | null {
-  return 11482346 as PlayerId;
+  const capture = playerRegex.exec(player);
+  const playerId = capture?.[1] ?? "";
+
+  return parseInt(playerId) as PlayerId;
 }
 
 type BeatmapId = number & { readonly __tag: unique symbol };
