@@ -4,14 +4,21 @@ export async function load({ cookies }: { cookies: Cookies }) {
   const headers = new Headers();
   const osuToken = cookies.get("osuToken");
   headers.append("Cookie", `osuToken=${osuToken}`);
-  const data = await fetch("http://localhost:5077/api/users/self", {
+  const data: Response = await fetch("http://localhost:5077/api/users/self", {
     credentials: "include",
     method: "GET",
     headers: headers,
   });
-  const user: GetSelfUserRequestResponse = await data.json();
-  return {
-    token: osuToken ?? null,
-    user: user,
-  };
+  if (data.ok) {
+    const user: GetSelfUserRequestResponse = await data.json();
+    return {
+      token: osuToken ?? null,
+      user: user,
+    };
+  } else {
+    return {
+      token: null,
+      user: null,
+    };
+  }
 }
