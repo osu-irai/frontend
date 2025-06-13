@@ -22,8 +22,12 @@
   .box {
     margin: 20px;
   }
+  .box p {
+    text-align: center;
+  }
   .grid {
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat(auto-fit, 400px);
     gap: 20px;
   }
