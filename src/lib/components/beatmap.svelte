@@ -26,6 +26,7 @@
   .card-size {
     min-height: auto;
     max-height: 250px;
+    height: 100%;
   }
   p {
     margin: 20px;
@@ -35,6 +36,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    object-fit: cover;
     z-index: -1;
     filter: brightness(40%);
   }

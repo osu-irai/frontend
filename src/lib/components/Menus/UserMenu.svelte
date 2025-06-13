@@ -1,26 +1,30 @@
 <script lang="ts">
-  const {
+  let {
     isVisible,
     parentPosition,
   }: {
     isVisible: boolean;
     parentPosition: DOMRect | undefined;
   } = $props();
-  let right = $derived(parentPosition?.left ?? 0);
+  let left = $derived.by(() => {
+    const inner = parentPosition?.left ?? 0;
+    return inner - 30;
+  });
 </script>
 
 {#if isVisible}
-  <div class="sticky" style="left: {right}px; top: 60px;">
-    <a href="/requests">Your requests</a>
-    <a href="/api/oauth/signout">Quit</a>
+  <div class="sticky" style="left: {left}px; top: 50px;">
+    <a href="/requests" onclick={() => (isVisible = false)}>Your requests</a>
+    <a href="/api/oauth/signout" onclick={() => (isVisible = false)}>Quit</a>
   </div>
 {/if}
 
 <style lang="scss">
   .sticky {
-    border-color: var(--ctp-macchiato-flamingo);
+    border-color: var(--ctp-macchiato-overlay2);
     border-style: solid;
-    border-width: 3px;
+    border-width: 2px;
+    background-color: var(--ctp-macchiato-surface0);
     padding: 10px;
     margin: 20px;
     display: flex;
