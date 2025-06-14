@@ -1,21 +1,22 @@
 <script lang="ts">
   import { getToken } from "./Stores/CookieStore.svelte";
-  import { parseFormData, type BeatmapId, type PlayerId } from "./RequestForm";
+  import { parseFormData, type CreateRequestData } from "./RequestForm";
   import type { Result } from "neverthrow";
-  import type { ParseError } from "../../app";
+  import type { ParseError } from "$lib/types/errors";
   const cookie = getToken();
   function makeRequest(
     event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement },
   ) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const parsedData: Result<[PlayerId, BeatmapId], ParseError> =
+    const parsedData: Result<CreateRequestData, ParseError> =
       parseFormData(data);
     if (parsedData.isOk()) {
+      const inner = parsedData.value;
       let headers = new Headers();
       headers.append("Cookie", `osuToken=${cookie}`);
       fetch(
-        `http://localhost:5077/api/requests/self?beatmapId=${parsedData.value[1]}&destinationId=${parsedData.value[0]}`,
+        `http://localhost:5077/api/requests/self?beatmapId=${inner.beatmap}&destinationId=${inner.player}`,
         {
           credentials: "include",
           method: "POST",

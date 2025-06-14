@@ -4,17 +4,17 @@ import type {
   ReceivedRequestResponse,
 } from "../../api/gen/index.ts";
 import type { Cookies } from "@sveltejs/kit";
+import { getSelfRequests } from "../../api/gen/requests.ts";
+import type { Token } from "$components/Stores/CookieStore.svelte.ts";
 export async function load({ cookies }: { cookies: Cookies }) {
-  const headers = new Headers();
   const osuToken = cookies.get("osuToken");
-  headers.append("Cookie", `osuToken=${osuToken}`);
-  const data = await fetch("http://localhost:5077/api/requests/self", {
-    credentials: "include",
-    method: "GET",
-    headers: headers,
-  });
-  const requests: GetApiRequestsSelfResponse = await data.json();
+  if (osuToken === undefined) {
+    return {
+      requests: null,
+    };
+  }
+  const requests = await getSelfRequests(osuToken as Token);
   return {
-    requests: requests,
+    requests: requests.isOk() ? requests.value : requests.error,
   };
 }

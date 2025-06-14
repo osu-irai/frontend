@@ -10,12 +10,12 @@ export function getValueFromForm(
   return (entry === null) ? err(errorType) : ok(entry.toString());
 }
 
-export function parseValueFromRegex<T, E>(
+export function parseValueFromRegex<E>(
   value: string,
   regex: RegExp,
   error: E,
-): Result<T, E> {
+): Result<number, E> {
   const capture = regex.exec(value);
   const first = capture?.[1];
-  return (first === undefined) ? err(error) : ok(parseInt(first) as T);
+  return (first === undefined) ? err(error) : ok(parseInt(first));
 }

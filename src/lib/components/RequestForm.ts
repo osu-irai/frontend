@@ -14,30 +14,42 @@ const beatmapRegex: RegExp = RegExp(
   /(?:https:\/\/osu\.ppy\.sh\/beatmapsets\/\d+#[a-z]*\/)?(\d+)(?:\/.*)?/,
 );
 export function parseBeatmapId(beatmap: string): Result<BeatmapId, ParseError> {
-  return parseValueFromRegex<BeatmapId, ParseError>(
+  return parseValueFromRegex<ParseError>(
     beatmap,
     beatmapRegex,
     ParseError.BeatmapParseError,
-  );
+  ).map(BeatmapId);
 }
 
 const playerRegex: RegExp = RegExp(
   /(?:https:\/\/osu\.ppy\.sh\/users\/)?(\d+)(?:\/.*)?/,
 );
 export function parsePlayerId(player: string): Result<PlayerId, ParseError> {
-  return parseValueFromRegex<PlayerId, ParseError>(
+  return parseValueFromRegex<ParseError>(
     player,
     playerRegex,
     ParseError.PlayerParseError,
-  );
+  ).map(PlayerId);
 }
 
 export type BeatmapId = number & { readonly __tag: unique symbol };
 export type PlayerId = number & { readonly __tag: unique symbol };
 
+function BeatmapId(id: number): BeatmapId {
+  return id as BeatmapId;
+}
+function PlayerId(id: number): PlayerId {
+  return id as PlayerId;
+}
+
+export type CreateRequestData = {
+  player: PlayerId;
+  beatmap: BeatmapId;
+};
+
 export function parseFormData(
   form: FormData,
-): Result<[PlayerId, BeatmapId], ParseError> {
+): Result<CreateRequestData, ParseError> {
   const playerId = getPlayerFromForm(form).andThen(parsePlayerId);
   const beatmapId = getBeatmapFromForm(form).andThen(parseBeatmapId);
 
@@ -47,8 +59,8 @@ export function parseFormData(
   if (beatmapId.isErr()) {
     return err(beatmapId.error);
   }
-  return ok([
-    playerId.value,
-    beatmapId.value,
-  ]);
+  return ok({
+    player: playerId.value,
+    beatmap: beatmapId.value,
+  });
 }
