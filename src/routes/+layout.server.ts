@@ -1,24 +1,28 @@
 import type { Cookies } from "@sveltejs/kit";
-import type { GetSelfUserRequestResponse } from "../api/gen";
+import type { SelfUserResponse } from "../api/gen";
+import { getSelfData } from "../api/gen/requests";
+import type { Token } from "$components/Stores/CookieStore.svelte";
+import type { Result } from "neverthrow";
 export async function load({ cookies }: { cookies: Cookies }) {
-  const headers = new Headers();
   const osuToken = cookies.get("osuToken");
-  headers.append("Cookie", `osuToken=${osuToken}`);
-  const data: Response = await fetch("http://localhost:5077/api/users/self", {
-    credentials: "include",
-    method: "GET",
-    headers: headers,
-  });
-  if (data.ok) {
-    const user: GetSelfUserRequestResponse = await data.json();
-    return {
-      token: osuToken ?? null,
-      user: user,
-    };
-  } else {
+  if (osuToken === undefined) {
     return {
       token: null,
       user: null,
+    };
+  }
+  const self: Result<SelfUserResponse, null> = await getSelfData(
+    osuToken as Token,
+  );
+  if (self.isErr()) {
+    return {
+      token: null,
+      user: null,
+    };
+  } else {
+    return {
+      token: osuToken,
+      user: self.value,
     };
   }
 }
