@@ -1,23 +1,27 @@
 <script lang="ts">
   import { getToken } from "./Stores/CookieStore.svelte";
-  import { parseFormData } from "./RequestForm";
+  import { parseFormData, type BeatmapId, type PlayerId } from "./RequestForm";
+  import type { Result } from "neverthrow";
   const cookie = getToken();
   function makeRequest(
     event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement },
   ) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const [destinationId, beatmapId] = parseFormData(data);
-    let headers = new Headers();
-    headers.append("Cookie", `osuToken=${cookie}`);
-    fetch(
-      `http://localhost:5077/api/requests/self?beatmapId=${beatmapId}&destinationId=${destinationId}`,
-      {
-        credentials: "include",
-        method: "POST",
-        headers: headers,
-      },
-    );
+    const parsedData: Result<[PlayerId, BeatmapId], string> =
+      parseFormData(data);
+    if (parsedData.isOk()) {
+      let headers = new Headers();
+      headers.append("Cookie", `osuToken=${cookie}`);
+      fetch(
+        `http://localhost:5077/api/requests/self?beatmapId=${parsedData.value[1]}&destinationId=${parsedData.value[0]}`,
+        {
+          credentials: "include",
+          method: "POST",
+          headers: headers,
+        },
+      );
+    }
   }
 </script>
 
@@ -50,12 +54,6 @@
   form {
     display: flex;
     flex-direction: column;
-  }
-  textarea {
-    appearance: none;
-  }
-  textarea:hover {
-    appearance: none;
   }
   input,
   button {

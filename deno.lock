@@ -11,6 +11,7 @@
     "npm:eslint-plugin-svelte@3": "3.5.1_eslint@9.25.1_svelte@5.28.2__acorn@8.14.1_postcss@8.5.3",
     "npm:eslint@^9.18.0": "9.25.1",
     "npm:globals@16": "16.0.0",
+    "npm:neverthrow@^8.2.0": "8.2.0",
     "npm:sass@^1.88.0": "1.88.0",
     "npm:svelte-check@4": "4.1.6_svelte@5.28.2__acorn@8.14.1_typescript@5.8.3",
     "npm:svelte-virtual@~0.6.3": "0.6.3_svelte@5.28.2__acorn@8.14.1",
@@ -1111,6 +1112,12 @@
     "natural-compare@1.4.0": {
       "integrity": "sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw=="
     },
+    "neverthrow@8.2.0": {
+      "integrity": "sha512-kOCT/1MCPAxY5iUV3wytNFUMUolzuwd/VF/1KCx7kf6CutrOsTie+84zTGTpgQycjvfLdBBdvBvFLqFD2c0wkQ==",
+      "dependencies": [
+        "@rollup/rollup-linux-x64-gnu"
+      ]
+    },
     "node-addon-api@7.1.1": {
       "integrity": "sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ=="
     },
@@ -1478,6 +1485,7 @@
         "npm:eslint-plugin-svelte@3",
         "npm:eslint@^9.18.0",
         "npm:globals@16",
+        "npm:neverthrow@^8.2.0",
         "npm:sass@^1.88.0",
         "npm:svelte-check@4",
         "npm:svelte-virtual@~0.6.3",
