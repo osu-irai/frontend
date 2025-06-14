@@ -2,13 +2,14 @@
   import { getToken } from "./Stores/CookieStore.svelte";
   import { parseFormData, type BeatmapId, type PlayerId } from "./RequestForm";
   import type { Result } from "neverthrow";
+  import type { ParseError } from "../../app";
   const cookie = getToken();
   function makeRequest(
     event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement },
   ) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const parsedData: Result<[PlayerId, BeatmapId], string> =
+    const parsedData: Result<[PlayerId, BeatmapId], ParseError> =
       parseFormData(data);
     if (parsedData.isOk()) {
       let headers = new Headers();

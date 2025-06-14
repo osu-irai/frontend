@@ -9,11 +9,3 @@ declare global {
     // interface Platform {}
   }
 }
-
-export {};
-export enum ParseError {
-  BeatmapFetchError,
-  PlayerFetchError,
-  BeatmapParseError,
-  PlayerParseError,
-}
