@@ -5,8 +5,8 @@
   import { setUser } from "$components/Stores/UserStore.svelte.js";
 
   let { data, children } = $props();
-  setToken(data.token);
   if (data.token !== null) {
+    setToken(data.token);
     setUser(data.user);
   }
 </script>
@@ -16,7 +16,4 @@
 {@render children()}
 
 <style>
-  html {
-    background-color: var(--ctp-macchiato-base);
-  }
 </style>
