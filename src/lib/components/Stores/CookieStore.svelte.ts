@@ -1,12 +1,13 @@
 import { getContext, setContext } from "svelte";
 
-const global_token: string | null = null;
+export type Token = string & { readonly __tag: unique symbol };
+const global_token: Token | null = null;
 
-export function setToken(token: string | null) {
-  setContext(global_token, token);
+export function setToken(token: Token | null) {
+  setContext(global_token, token as Token);
 }
 
-export function getToken(): string | null {
+export function getToken(): Token | null {
   return getContext(global_token);
 }
 
