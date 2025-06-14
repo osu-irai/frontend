@@ -5,7 +5,9 @@
   let isVisible = $state(false);
   let buttonRect: HTMLDivElement | undefined = $state();
   // HACK: A bit dirty
-  let buttonSize: DOMRect | undefined = $state();
+  let buttonSize: DOMRect | undefined = $derived(
+    buttonRect?.getBoundingClientRect(),
+  );
 </script>
 
 <svelte:window

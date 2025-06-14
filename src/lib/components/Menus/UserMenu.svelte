@@ -7,7 +7,7 @@
     parentPosition: DOMRect | undefined;
   } = $props();
   let left = $derived.by(() => {
-    const inner = parentPosition?.left ?? 0;
+    const inner = parentPosition?.left;
     return inner - 30;
   });
 </script>
