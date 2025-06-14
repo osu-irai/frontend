@@ -4,4 +4,15 @@
   const { data } = $props();
 </script>
 
-<RequestForm />
+<div class="base">
+  <RequestForm />
+</div>
+
+<style lang="scss">
+  .base {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
