@@ -10,6 +10,10 @@
   a {
     width: auto;
     margin: auto;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--ctp-macchiato-yellow);
   }
   p {
     margin: auto;

@@ -25,7 +25,9 @@
 >
   <div class="inner">
     <img src={user.avatarUrl} alt="Avatar of user {user.id}" />
-    <div>{user.username}</div>
+    <div>
+      <text>{user.username}</text>
+    </div>
   </div>
 </div>
 <UserMenu {isVisible} parentPosition={buttonSize} />
@@ -39,14 +41,19 @@
     align-items: center;
   }
   .outer {
+    color: var(--ctp-macchiato-blue);
     width: auto;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+  .outer:hover {
+    cursor: pointer;
+    color: var(--ctp-macchiato-yellow);
+  }
   img {
     margin-right: 20px;
-    width: 32px;
+    width: 24px;
   }
 </style>
