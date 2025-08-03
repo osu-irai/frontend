@@ -1,12 +1,12 @@
 <script lang="ts">
-  import Request from "$components/Request.svelte";
-  import type {
+import Request from "$components/Request.svelte";
+import type {
     GetApiRequestsSelfResponse,
     GetSelfUserRequestResponse,
-  } from "../../api/gen/types.gen.js";
-  const { data } = $props();
-  const requests: GetApiRequestsSelfResponse = data.requests;
-  const user: GetSelfUserRequestResponse | null = data.user;
+} from "../../api/gen/types.gen.js";
+const { data } = $props();
+const requests: GetApiRequestsSelfResponse = data.requests;
+const user: GetSelfUserRequestResponse | null = data.user;
 </script>
 
 <div class="box">

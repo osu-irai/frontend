@@ -1,7 +1,7 @@
 <script lang="ts">
-  import NavbarButton from "./NavbarButton.svelte";
-  import { isAuthenticated } from "$components/Stores/CookieStore.svelte";
-  import NavbarHomeButton from "./NavbarHomeButton.svelte";
+import NavbarButton from "./NavbarButton.svelte";
+import { isAuthenticated } from "$components/Stores/CookieStore.svelte";
+import NavbarHomeButton from "./NavbarHomeButton.svelte";
 </script>
 
 <nav>

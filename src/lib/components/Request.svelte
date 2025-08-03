@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { ReceivedRequestResponse } from "../../api/gen";
-  import Beatmap from "./beatmap.svelte";
-  import Delete from "./icons/Delete.svelte";
-  let { data } = $props();
-  let nodeRef: Node = $state();
-  let request: ReceivedRequestResponse = data;
+import type { ReceivedRequestResponse } from "../../api/gen";
+import Beatmap from "./beatmap.svelte";
+import Delete from "./icons/Delete.svelte";
+let { data } = $props();
+let nodeRef: Node = $state();
+let request: ReceivedRequestResponse = data;
 </script>
 
 <div bind:this={nodeRef} class="request">
@@ -53,7 +53,8 @@
     min-width: 40px;
     width: 100%;
     max-width: 40px;
-    display: hidden;
+  }
+  .button-side:hover {
   }
   .user p {
     padding-left: 10px;

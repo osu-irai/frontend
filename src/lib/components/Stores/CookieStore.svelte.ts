@@ -13,5 +13,9 @@ export function getToken(): Result<Token, null> {
 }
 
 export function isAuthenticated() {
-  return getToken().isOk();
+  const tok = getToken();
+  if (tok === undefined) {
+    return false;
+  }
+  return tok.isOk();
 }

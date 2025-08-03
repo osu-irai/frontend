@@ -1,13 +1,13 @@
 <script lang="ts">
-  import UserMenu from "$components/Menus/UserMenu.svelte";
-  import { getUser } from "$components/Stores/UserStore.svelte";
-  const { user } = getUser()!;
-  let isVisible = $state(false);
-  let buttonRect: HTMLDivElement | undefined = $state();
-  // HACK: A bit dirty
-  let buttonSize: DOMRect | undefined = $derived(
+import UserMenu from "$components/Menus/UserMenu.svelte";
+import { getUser } from "$components/Stores/UserStore.svelte";
+const { user } = getUser()!;
+let isVisible = $state(false);
+let buttonRect: HTMLDivElement | undefined = $state();
+// HACK: A bit dirty
+let buttonSize: DOMRect | undefined = $derived(
     buttonRect?.getBoundingClientRect(),
-  );
+);
 </script>
 
 <svelte:window

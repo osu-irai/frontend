@@ -1,6 +1,6 @@
 export enum ParseError {
-  BeatmapFormFetchError,
-  PlayerFormFetchError,
-  BeatmapParseError,
-  PlayerParseError,
+    BeatmapFormFetchError,
+    PlayerFormFetchError,
+    BeatmapParseError,
+    PlayerParseError,
 }

@@ -1,20 +1,20 @@
 <script lang="ts">
-  import { getToken } from "$components/Stores/CookieStore.svelte";
-  const headers = new Headers();
-  const token = getToken();
-  let { id, nodeRef }: { id: number; nodeRef: Node } = $props();
-  async function delete_request(requestId: number) {
+import { getToken } from "$components/Stores/CookieStore.svelte";
+const headers = new Headers();
+const token = getToken();
+let { id, nodeRef }: { id: number; nodeRef: Node } = $props();
+async function delete_request(requestId: number) {
     headers.append("Cookie", `osuToken=${token}`);
     fetch(`http://localhost:5077/api/requests/self?requestId=${requestId}`, {
-      credentials: "include",
-      method: "DELETE",
-      headers: headers,
+        credentials: "include",
+        method: "DELETE",
+        headers: headers,
     });
-  }
-  const func = () => {
+}
+const func = () => {
     delete_request(id);
     nodeRef.parentNode?.removeChild(nodeRef);
-  };
+};
 </script>
 
 <div>
@@ -33,7 +33,7 @@
     height: 100%;
     width: 100%;
     border: none;
-    display: hidden;
+    visibility: visible;
   }
   button {
     display: none;
@@ -43,6 +43,7 @@
   }
   div:hover button {
     display: block;
+    visibility: visible;
   }
   button svg {
     color: var(--ctp-macchiato-base);

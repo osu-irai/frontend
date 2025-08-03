@@ -2,7 +2,7 @@
  * Response types for API requests
  * @module
  */
-import type { BeatmapDTO, UserDTO } from "./common";
+import type { BeatmapDTO, UserDTO } from "./common.ts";
 
 /**
  * Response return type for "GET /users/self"
@@ -10,8 +10,8 @@ import type { BeatmapDTO, UserDTO } from "./common";
  * @property {number} requestCount - Amount of requests a user has
  */
 export type GetUserSelfResponse = {
-    user: UserDTO;
-    requestCount: number;
+  user: UserDTO;
+  requestCount: number;
 };
 
 /**
@@ -21,7 +21,17 @@ export type GetUserSelfResponse = {
  * @property {UserDTO} from - Information about the author of the request
  */
 export type GetRequestsResponse = {
-    id: number;
-    beatmap: BeatmapDTO;
-    from: UserDTO;
+  id: number;
+  beatmap: BeatmapDTO;
+  from: UserDTO;
+};
+
+/**
+ * Response return type for "GET /search"
+ * @property {Array<UserDTO>} players - Players found through query
+ * @property {number} count - Total player count found
+ */
+export type GetSearchResponse = {
+  players: Array<UserDTO>;
+  count: number;
 };

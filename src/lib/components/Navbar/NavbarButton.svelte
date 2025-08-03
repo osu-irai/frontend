@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { text, destination } = $props();
+let { text, destination } = $props();
 </script>
 
 <a href={destination}>
