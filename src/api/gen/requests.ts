@@ -1,4 +1,4 @@
-import { Token } from "$components/Stores/CookieStore.svelte.ts";
+import { type Token } from "../../../src/lib/components/Stores/CookieStore.svelte.ts";
 import { err, ok, Result, ResultAsync } from "neverthrow";
 import type {
   GetRequestsResponse,
@@ -7,6 +7,12 @@ import type {
 } from "./types/responses.ts";
 
 import "./types/queries.ts";
+import {
+  type GetRequestsQuery,
+  type GetSearchQuery,
+  intoQueryString,
+  type QueryParams,
+} from "./types/queries.ts";
 
 /** Base endpoint for API interactions */
 const BASE_PATH = "http://localhost:5077/api/";
@@ -75,7 +81,7 @@ function fetchFromEndpoint(
   headers.append("Cookie", `osuToken=${token}`);
   const url = new URL(endpoint, BASE_PATH);
   if (query !== undefined) {
-    url.search = query.toString();
+    url.search = intoQueryString(query);
   }
   return ResultAsync.fromPromise(
     fetch(url, {
