@@ -27,11 +27,20 @@ export type GetRequestsResponse = {
 };
 
 /**
- * Response return type for "GET /search"
+ * Response return type for "GET /search/player"
  * @property {Array<UserDTO>} players - Players found through query
  * @property {number} count - Total player count found
  */
-export type GetSearchResponse = {
+export type GetPlayerQueryResponse = {
   players: Array<UserDTO>;
+  count: number;
+};
+/**
+ * Response return type for "GET /search/beatmap"
+ * @property {Array<UserDTO>} players - Players found through query
+ * @property {number} count - Total player count found
+ */
+export type GetBeatmapQueryResponse = {
+  maps: Array<BeatmapDTO>;
   count: number;
 };
