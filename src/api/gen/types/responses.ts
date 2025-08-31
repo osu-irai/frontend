@@ -41,6 +41,6 @@ export type GetPlayerQueryResponse = {
  * @property {number} count - Total player count found
  */
 export type GetBeatmapQueryResponse = {
-  maps: Array<BeatmapDTO>;
+  beatmaps: Array<BeatmapDTO>;
   count: number;
 };

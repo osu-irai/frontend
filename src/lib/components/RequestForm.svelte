@@ -3,10 +3,16 @@
     import { parseFormData, type CreateRequestData } from "./RequestForm";
     import type { Result } from "neverthrow";
     import type { ParseError } from "$lib/types/errors";
-    import type { SearchResult } from "$lib/types/responses";
-    import { getSearch } from "../../api/gen/requests";
-    import type { GetSearchResponse } from "$types/responses";
+    import { getSearchBeatmap, getSearchPlayer } from "../../api/gen/requests";
+    import type {
+        GetBeatmapQueryResponse,
+        GetPlayerQueryResponse,
+    } from "$types/responses";
     const cookie = getToken();
+
+    let abortController: AbortController | null = null;
+    let searchTimeout: number | null;
+
     function makeRequest(
         event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement },
     ) {
@@ -29,13 +35,58 @@
         }
     }
     const tok: Result<Token, null> = getToken();
-    const init: GetSearchResponse = {
+    const init: GetPlayerQueryResponse = {
         players: [],
         count: 0,
     };
-    var search: GetSearchResponse = $state(init);
+    var search: GetPlayerQueryResponse = $state(init);
+    var beatmap_search: GetBeatmapQueryResponse = $state({
+        beatmaps: [],
+        count: 0,
+    });
 
-    async function updateSearch() {
+    async function updateBeatmaps() {
+        const text: HTMLTextAreaElement = document.getElementById(
+            "beatmap",
+        ) as HTMLTextAreaElement;
+        if (text === null || text.value == "") {
+            beatmap_search = { beatmaps: [], count: 0 };
+            return;
+        }
+        if (tok.isErr()) {
+            return;
+        }
+
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+            searchTimeout = null;
+        }
+
+        if (abortController) {
+            abortController.abort();
+            abortController = null;
+        }
+
+        searchTimeout = setTimeout(async () => {
+            try {
+                abortController = new AbortController();
+                const searchResult = await getSearchBeatmap(
+                    tok.value,
+                    text.value,
+                );
+                if (searchResult.isErr()) {
+                    return;
+                }
+                beatmap_search = searchResult.value;
+            } catch (error) {
+            } finally {
+                abortController = null;
+                searchTimeout = null;
+            }
+        }, 500);
+    }
+
+    async function updatePlayers() {
         const text: HTMLTextAreaElement = document.getElementById(
             "search",
         ) as HTMLTextAreaElement;
@@ -46,7 +97,7 @@
         if (tok.isErr()) {
             return;
         }
-        const searchResult = await getSearch(tok.value, text.value);
+        const searchResult = await getSearchPlayer(tok.value, text.value);
         if (searchResult.isErr()) {
             return;
         }
@@ -60,6 +111,14 @@
         search = { players: [], count: 0 };
         text.value = val;
     }
+
+    function setBeatmap(val: number) {
+        const text: HTMLTextAreaElement = document.getElementById(
+            "beatmap",
+        ) as HTMLTextAreaElement;
+        beatmap_search = { beatmaps: [], count: 0 };
+        text.value = val.toString();
+    }
 </script>
 
 <h1>Create a request!</h1>
@@ -69,7 +128,7 @@
         <label>
             <input
                 oninput={async (_) => {
-                    await updateSearch();
+                    await updatePlayers();
                 }}
                 name="destination"
                 type="text"
@@ -80,20 +139,34 @@
         </label>
         <label>
             <input
+                oninput={async (_) => {
+                    await updateBeatmaps();
+                }}
                 name="beatmap"
                 type="text"
+                id="beatmap"
                 required
-                pattern="(?:https:\/\/osu\.ppy\.sh\/beatmapsets\/\d+#[a-z]*\/)?(\d+)(?:\/.*)?"
             />
             Beatmap
         </label>
         <button type="submit">Submit</button>
     </form>
-    {#each search.players as player}
-        <button class="completion" onclick={(_) => setUsername(player.username)}
-            >{player.username}</button
-        >
-    {/each}
+    <div class="completion_block">
+        {#each search.players as player}
+            <button
+                class="completion"
+                onclick={(_) => setUsername(player.username)}
+                >{player.username}</button
+            >
+        {/each}
+        {#each beatmap_search.beatmaps as player}
+            <button
+                class="completion"
+                onclick={(_) => setBeatmap(player.beatmapId)}
+                >{player.difficulty}</button
+            >
+        {/each}
+    </div>
 </div>
 
 <style lang="scss">
@@ -114,6 +187,11 @@
     }
     form button {
         max-width: 25%;
+    }
+    .completion_block {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
     }
     .completion {
         margin-top: 20px;
@@ -139,7 +217,5 @@
         appearance: none;
         border-color: none;
         outline: 2px solid var(--ctp-macchiato-red);
-    }
-    button {
     }
 </style>

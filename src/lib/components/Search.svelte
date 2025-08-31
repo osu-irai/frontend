@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { getSearch } from "../../api/gen/requests";
-    import type { GetSearchResponse } from "../../api/gen/types/responses";
+    import { getSearchPlayer } from "../../api/gen/requests";
+    import type { GetPlayerQueryResponse } from "../../api/gen/types/responses";
     import {
         getToken,
         type Token,
@@ -8,11 +8,11 @@
     import type { Result } from "neverthrow";
 
     const tok: Result<Token, null> = getToken();
-    const init: GetSearchResponse = {
+    const init: GetPlayerQueryResponse = {
         players: [],
         count: 0,
     };
-    var search: GetSearchResponse = $state(init);
+    var search: GetPlayerQueryResponse = $state(init);
     const text: HTMLTextAreaElement = document.getElementById(
         "search",
     ) as HTMLTextAreaElement;
@@ -32,7 +32,7 @@
         if (tok.isErr()) {
             return;
         }
-        const searchResult = await getSearch(tok.value, text.value);
+        const searchResult = await getSearchPlayer(tok.value, text.value);
         if (searchResult.isErr()) {
             return;
         }
