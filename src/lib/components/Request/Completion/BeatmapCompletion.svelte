@@ -7,13 +7,13 @@
         beatmap,
         click,
     }: { beatmap: BeatmapDTO; click: (id: number) => void } = $props();
-    let source = getSource(beatmap.beatmapsetId);
+    let source = () => getSource(beatmap.beatmapsetId);
 </script>
 
 <button onclick={(_) => click(beatmap.beatmapId)}>
     <img
         class="card-size"
-        src={source}
+        src={source()}
         loading="lazy"
         alt="Background image of beatmap {beatmap.title}"
     />
