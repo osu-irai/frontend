@@ -30,7 +30,6 @@
         border-color: var(--ctp-macchiato-mantle);
         border-style: solid;
         border-width: 3px;
-        border-radius: 20px;
         min-width: min-content;
         max-width: 400px;
         content-visibility: auto;
@@ -63,6 +62,5 @@
         margin-bottom: auto;
         margin-left: 10px;
         max-height: 32px;
-        border-radius: 5px;
     }
 </style>
