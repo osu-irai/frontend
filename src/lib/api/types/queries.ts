@@ -1,6 +1,5 @@
-import type { StringRepresentable as ToStringable } from "./util.ts";
+import type { StringRepresentable as ToStringable } from "$types/util.ts";
 
-// deno-lint-ignore no-explicit-any
 export type QueryParams = Record<string, ToStringable>;
 /**
  * Request query parameters for "GET /request"

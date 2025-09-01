@@ -17,8 +17,8 @@ const config = {
       "$utils/*": "./src/lib/utils/*",
       $components: "./src/lib/components",
       "$components/*": "./src/lib/components/*",
-      $types: "./src/api/gen/types",
-      "$types/*": "./src/api/gen/types/*",
+      $types: "./src/lib/api/types",
+      "$types/*": "./src/lib/api/types/*",
     },
   },
 };

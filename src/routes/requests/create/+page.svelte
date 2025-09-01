@@ -1,7 +1,6 @@
 <script lang="ts">
-import type { GetApiRequestsSelfResponse } from "../../../api/gen";
-import RequestForm from "$components/RequestForm.svelte";
-const { data } = $props();
+    import RequestForm from "$components/Request/RequestForm.svelte";
+    const { data } = $props();
 </script>
 
 <div class="base">

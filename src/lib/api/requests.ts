@@ -1,20 +1,22 @@
-import { type Token } from "../../../src/lib/components/Stores/CookieStore.svelte.ts";
-import { err, ok, Result, ResultAsync } from "neverthrow";
-import type {
-  GetBeatmapQueryResponse,
-  GetPlayerQueryResponse,
-  GetRequestsResponse,
-  GetUserSelfResponse,
-} from "./types/responses.ts";
-
-import "./types/queries.ts";
+import { Result, ResultAsync } from "neverthrow";
+import type { Token } from "../components/Stores/CookieStore.svelte.ts";
 import {
   type GetRequestsQuery,
   type GetSearchQuery,
   intoQueryString,
   type QueryParams,
 } from "./types/queries.ts";
-import { type PostRequestBody } from "./types/requests.ts";
+import type {
+  PostRequestBody,
+  PostSelfNamedRequestBody,
+  PostSelfRequestBody,
+} from "./types/requests.ts";
+import type {
+  GetBeatmapQueryResponse,
+  GetPlayerQueryResponse,
+  GetRequestsResponse,
+  GetUserSelfResponse,
+} from "./types/responses.ts";
 
 /** Base endpoint for API interactions */
 const BASE_PATH = "http://localhost:5077/api/";
@@ -44,8 +46,8 @@ export function getSelfData(
 }
 export function getSelfRequests(
   token: Token,
-): Promise<Result<GetRequestsResponse, FetchErrors>> {
-  return getData<GetRequestsResponse>(token, "requests/self");
+): Promise<Result<GetRequestsResponse[], FetchErrors>> {
+  return getData<GetRequestsResponse[]>(token, "requests/self");
 }
 export function getSearchPlayer(
   token: Token,
@@ -78,15 +80,21 @@ export function postRequest(
   token: Token,
   body: PostRequestBody,
 ): Promise<Result<Response, FetchErrors>> {
-  return postData(token, "requests/self", body);
+  return postData(token, "requests", body);
 }
 
+export function postNamedSelfRequest(
+  token: Token,
+  body: PostSelfNamedRequestBody,
+): Promise<Result<Response, FetchErrors>> {
+  return postData(token, "requests/self/named", body);
+}
 async function getData<T>(
   token: Token,
   endpoint: string,
   query?: QueryParams | undefined,
 ): Promise<Result<T, FetchErrors>> {
-  return await fetchFromEndpoint(token, endpoint, query).andThen((res) =>
+  return fetchFromEndpoint(token, endpoint, query).andThen((res) =>
     jsonFromResponse<T>(res, endpoint)
   );
 }
@@ -98,6 +106,7 @@ async function postData(
 ): Promise<Result<Response, FetchErrors>> {
   const headers = new Headers();
   headers.append("Cookie", `osuToken=${token}`);
+  headers.append("Content-Type", "application/json");
   const url = new URL(endpoint, BASE_PATH);
   return ResultAsync.fromPromise(
     fetch(url, {

@@ -1,40 +1,42 @@
 <script lang="ts">
-    import { getToken, type Token } from "./Stores/CookieStore.svelte";
-    import { parseFormData, type CreateRequestData } from "./RequestForm";
+    import {
+        getToken,
+        type Token,
+    } from "$components/Stores/CookieStore.svelte";
+    import { parseFormData } from "./RequestForm";
     import type { Result } from "neverthrow";
-    import type { ParseError } from "$lib/types/errors";
-    import { getSearchBeatmap, getSearchPlayer } from "../../api/gen/requests";
     import type {
         GetBeatmapQueryResponse,
         GetPlayerQueryResponse,
     } from "$types/responses";
-    const cookie = getToken();
-
+    import type { ParseError } from "$types/errors";
+    import {
+        getSearchBeatmap,
+        getSearchPlayer,
+        postNamedSelfRequest,
+    } from "$lib/api/requests";
+    import BeatmapCompletion from "./Completion/BeatmapCompletion.svelte";
+    import UserCompletion from "./Completion/UserCompletion.svelte";
     let abortController: AbortController | null = null;
     let searchTimeout: number | null;
 
+    const tok: Result<Token, null> = getToken();
     function makeRequest(
         event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement },
     ) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const parsedData: Result<CreateRequestData, ParseError> =
-            parseFormData(data);
+        if (tok.isErr()) {
+            return;
+        }
+        const parsedData = parseFormData(data);
+        console.log(parsedData);
         if (parsedData.isOk()) {
             const inner = parsedData.value;
-            let headers = new Headers();
-            headers.append("Cookie", `osuToken=${cookie}`);
-            fetch(
-                `http://localhost:5077/api/requests/self?beatmapId=${inner.beatmap}&destinationId=${inner.player}`,
-                {
-                    credentials: "include",
-                    method: "POST",
-                    headers: headers,
-                },
-            );
+
+            postNamedSelfRequest(tok.value, inner);
         }
     }
-    const tok: Result<Token, null> = getToken();
     const init: GetPlayerQueryResponse = {
         players: [],
         count: 0,
@@ -104,20 +106,20 @@
         search = searchResult.value;
     }
 
-    function setUsername(val: string) {
+    function setUsername(id: string) {
         const text: HTMLTextAreaElement = document.getElementById(
             "search",
         ) as HTMLTextAreaElement;
         search = { players: [], count: 0 };
-        text.value = val;
+        text.value = id;
     }
 
-    function setBeatmap(val: number) {
+    function setBeatmap(id: number) {
         const text: HTMLTextAreaElement = document.getElementById(
             "beatmap",
         ) as HTMLTextAreaElement;
         beatmap_search = { beatmaps: [], count: 0 };
-        text.value = val.toString();
+        text.value = id.toString();
     }
 </script>
 
@@ -153,18 +155,10 @@
     </form>
     <div class="completion_block">
         {#each search.players as player}
-            <button
-                class="completion"
-                onclick={(_) => setUsername(player.username)}
-                >{player.username}</button
-            >
+            <UserCompletion user={player} click={setUsername} />
         {/each}
-        {#each beatmap_search.beatmaps as player}
-            <button
-                class="completion"
-                onclick={(_) => setBeatmap(player.beatmapId)}
-                >{player.difficulty}</button
-            >
+        {#each beatmap_search.beatmaps as map}
+            <BeatmapCompletion beatmap={map} click={setBeatmap} />
         {/each}
     </div>
 </div>
@@ -187,6 +181,12 @@
     }
     form button {
         max-width: 25%;
+    }
+    form button:hover {
+        outline: 2px solid var(--ctp-macchiato-green);
+    }
+    form button:active {
+        outline: 2px solid var(--ctp-macchiato-blue);
     }
     .completion_block {
         width: 200px;

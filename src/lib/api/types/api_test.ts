@@ -3,7 +3,7 @@ import {
     type GetRequestsQuery,
     type GetSearchQuery,
     intoQueryString,
-} from "./queries.ts";
+} from "src/lib/api/types/queries.ts";
 
 Deno.test({
     name: "GetRequestsQuery as URL params",
