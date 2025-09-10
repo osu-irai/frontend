@@ -6,7 +6,7 @@
     } from "$types/responses.ts";
     const { data } = $props();
     const user: GetUserSelfResponse = data.user!;
-    const requests: GetRequestsResponsep[] = data.requests!;
+    const requests: GetRequestsResponse[] = data.requests!;
 </script>
 
 <div class="box">
@@ -28,7 +28,7 @@
     .grid {
         display: grid;
         justify-content: center;
-        grid-template-columns: repeat(auto-fit, 400px);
+        grid-template-columns: repeat(auto-fill, max(20vw, 350px));
         gap: 20px;
     }
 </style>

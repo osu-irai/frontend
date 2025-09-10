@@ -42,12 +42,12 @@ const toDeserializationError = (
 export function getSelfData(
   token: Token,
 ): Promise<Result<GetUserSelfResponse, FetchErrors>> {
-  return getData<GetUserSelfResponse>(token, "users/self");
+  return getData<GetUserSelfResponse>(token, "users/own");
 }
 export function getSelfRequests(
   token: Token,
 ): Promise<Result<GetRequestsResponse[], FetchErrors>> {
-  return getData<GetRequestsResponse[]>(token, "requests/self");
+  return getData<GetRequestsResponse[]>(token, "requests/own");
 }
 export function getSearchPlayer(
   token: Token,
@@ -87,7 +87,7 @@ export function postNamedSelfRequest(
   token: Token,
   body: PostSelfNamedRequestBody,
 ): Promise<Result<Response, FetchErrors>> {
-  return postData(token, "requests/self/named", body);
+  return postData(token, "requests/own", body);
 }
 async function getData<T>(
   token: Token,

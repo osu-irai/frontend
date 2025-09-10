@@ -31,7 +31,7 @@
         border-style: solid;
         border-width: 3px;
         min-width: min-content;
-        max-width: 400px;
+        max-width: 100%;
         content-visibility: auto;
     }
     .request:hover {

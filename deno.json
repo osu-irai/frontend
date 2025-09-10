@@ -2,5 +2,6 @@
     "imports": {
         "@catppuccin/palette": "jsr:@catppuccin/palette@^1.7.1",
         "@std/assert": "jsr:@std/assert@^1.0.13"
-    }
+    },
+    "importMap": "import_map.json"
 }
