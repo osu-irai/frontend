@@ -19,7 +19,8 @@ import type {
 } from "./types/responses.ts";
 
 /** Base endpoint for API interactions */
-const BASE_PATH = "https://irai.comf.ee/api/";
+// const BASE_PATH = "https://irai.comf.ee/api/";
+const BASE_PATH = Deno.env.get("IRAI_API") ?? "http://localhost:5076/api/";
 export type FetchError = {
   message: string;
 };
