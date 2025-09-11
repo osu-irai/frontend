@@ -1,9 +1,9 @@
 @import url("https://unpkg.com/@catppuccin/palette/css/catppuccin.css");
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 html {
     background: var(--ctp-macchiato-base);
     color: var(--ctp-macchiato-text);
-    font-family: Iosevka, serif;
+    font-family: "Quicksand", serif;
     --default-size: 1rem;
     font-size: var(--default-size);
 }

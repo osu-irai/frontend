@@ -9,12 +9,13 @@ export function setToken(token: string) {
 }
 
 export function getToken(): Result<Token, null> {
-  return getContext(global_token);
+  const tok = getContext(global_token) as Result<Token, null>;
+  return tok;
 }
 
 export function isAuthenticated() {
   const tok = getToken();
-  if (tok === undefined) {
+  if (tok === undefined || tok === null) {
     return false;
   }
   return tok.isOk();

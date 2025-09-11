@@ -19,7 +19,7 @@ import type {
 } from "./types/responses.ts";
 
 /** Base endpoint for API interactions */
-const BASE_PATH = "http://localhost:5077/api/";
+const BASE_PATH = "https://irai.comf.ee/api/";
 export type FetchError = {
   message: string;
 };
@@ -28,8 +28,8 @@ export type DeserializationError = {
   data: string;
 };
 export type FetchErrors = FetchError | DeserializationError;
-const toFetchError = (endpoint: string): FetchError => ({
-  message: `Failed to fetch ${endpoint}`,
+const toFetchError = (endpoint: string, e: any): FetchError => ({
+  message: `Failed to fetch ${endpoint}: ${e}`,
 });
 const toDeserializationError = (
   endpoint: string,
@@ -115,7 +115,7 @@ async function postData(
       headers: headers,
       body: JSON.stringify(body),
     }),
-    () => toFetchError(endpoint),
+    (e) => toFetchError(endpoint, e),
   );
 }
 
@@ -136,7 +136,7 @@ function fetchFromEndpoint(
       method: "GET",
       headers: headers,
     }),
-    () => toFetchError(endpoint),
+    (e) => toFetchError(endpoint, e),
   );
 }
 
