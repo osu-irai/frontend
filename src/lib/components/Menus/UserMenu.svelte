@@ -10,14 +10,14 @@
         const inner = parentPosition?.left!;
         return inner - 30;
     });
-    const signout = import.meta.env.VITE_IRAI_API;
+    const signout = `${import.meta.env.VITE_IRAI_API}oauth/signout`;
 </script>
 
 {#if isVisible}
     <div class="sticky" style="left: {left}px; top: 50px;">
         <a href="/requests" onclick={() => (isVisible = false)}>Your requests</a
         >
-        <a href={signout + "oauth/signout"} onclick={() => (isVisible = false)}
+        <a href={signout} onclick={() => (isVisible = false)}
             >Quit</a
         >
     </div>

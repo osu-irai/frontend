@@ -5,6 +5,7 @@ on:
 
 env:
   IMAGE_NAME: ghcr.io/osu-irai/frontend
+  
 
 
 jobs:
@@ -30,6 +31,10 @@ jobs:
 
       - name: Build and publish
         uses: docker/build-push-action@v5
+        env:
+          NODE_ENV: "Production"
+          VITE_IRAI_API: "https://irai.comf.ee/api/"
+          VITE_IRAI_ROOT: "https://irai.comf.ee/"
         with:
           context: .
           push: true

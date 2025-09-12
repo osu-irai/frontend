@@ -2,7 +2,7 @@
     import NavbarButton from "./NavbarButton.svelte";
     import { isAuthenticated } from "$components/Stores/CookieStore.svelte";
     import NavbarHomeButton from "./NavbarHomeButton.svelte";
-    const api = import.meta.env.VITE_IRAI_API;
+    const api = `${import.meta.env.VITE_IRAI_API}oauth/auth`;
 </script>
 
 <nav>
@@ -11,7 +11,7 @@
     {#if isAuthenticated()}
         <NavbarHomeButton />
     {:else}
-        <NavbarButton text="Sign in" destination={api + "oauth/auth"} />
+        <NavbarButton text="Sign in" destination={api} />
     {/if}
 </nav>
 
