@@ -39,4 +39,7 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          build-args: NODE_ENV=Production,VITE_IRAI_API=https://irai.comf.ee/api/,VITE_IRAI_ROOT=https://irai.comf.ee/
+          build-args: |
+            NODE_ENV=Production
+            VITE_IRAI_API=https://irai.comf.ee/api/
+            VITE_IRAI_ROOT=https://irai.comf.ee/
