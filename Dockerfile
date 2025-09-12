@@ -6,6 +6,13 @@ COPY deno.lock ./
 
 RUN deno install
 COPY . ./
+ARG NODE_ENV
+ARG VITE_IRAI_API
+ARG VITE_IRAI_ROOT
+ENV NODE_ENV $NODE_ENV
+ENV VITE_IRAI_API $VITE_IRAI_API
+ENV VITE_IRAI_ROOT $VITE_IRAI_ROOT
+RUN echo "$NODE_ENV" "$VITE_IRAI_API" 
 RUN deno task build
 
 FROM denoland/deno:alpine AS run
