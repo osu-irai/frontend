@@ -19,7 +19,7 @@ import type {
 } from "./types/responses.ts";
 
 /** Base endpoint for API interactions */
-const BASE_PATH = "https://irai.comf.ee/api/";
+const BASE_PATH = import.meta.env.VITE_IRAI_API;
 export type FetchError = {
   message: string;
 };

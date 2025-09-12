@@ -11,7 +11,7 @@
     <div class="source">
         <div class="user">
             <img
-                src={request.from.avatarUrl}
+                src={request.from.avatarUrl.toString()}
                 alt="Avatar of request author {request.from.username}"
             />
             <p>{request.from.username}</p>

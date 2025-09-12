@@ -1,4 +1,4 @@
-import type { StringRepresentable as ToStringable } from "$types/util.ts";
+import type { StringRepresentable as ToStringable } from "./util.ts";
 
 export type QueryParams = Record<string, ToStringable>;
 /**

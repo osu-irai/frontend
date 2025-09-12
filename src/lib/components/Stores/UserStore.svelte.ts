@@ -1,12 +1,12 @@
 import { getContext, setContext } from "svelte";
-import type { GetSelfUserRequestResponse } from "$lib/api/index.ts";
+import type { GetUserSelfResponse } from "../../api/types/responses.ts";
 
-const global_user: GetSelfUserRequestResponse | null = null;
+const global_user: GetUserSelfResponse | null = null;
 
-export function setUser(user: GetSelfUserRequestResponse | null) {
-    setContext(global_user, user);
+export function setUser(user: GetUserSelfResponse | null) {
+  setContext(global_user, user);
 }
 
-export function getUser(): GetSelfUserRequestResponse | null {
-    return getContext(global_user);
+export function getUser(): GetUserSelfResponse | null {
+  return getContext(global_user);
 }

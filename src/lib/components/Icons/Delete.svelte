@@ -5,11 +5,14 @@
     let { id, nodeRef }: { id: number; nodeRef: Node } = $props();
     async function delete_request(requestId: number) {
         headers.append("Cookie", `osuToken=${token}`);
-        fetch(`http://localhost:5077/api/requests/own?requestId=${requestId}`, {
-            credentials: "include",
-            method: "DELETE",
-            headers: headers,
-        });
+        fetch(
+            `${import.meta.env.IRAI_API}/requests/own?requestId=${requestId}`,
+            {
+                credentials: "include",
+                method: "DELETE",
+                headers: headers,
+            },
+        );
     }
     const func = () => {
         delete_request(id);

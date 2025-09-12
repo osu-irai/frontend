@@ -1,22 +1,24 @@
 <script lang="ts">
-let {
-    isVisible,
-    parentPosition,
-}: {
-    isVisible: boolean;
-    parentPosition: DOMRect | undefined;
-} = $props();
-let left = $derived.by(() => {
-    const inner = parentPosition?.left!;
-    return inner - 30;
-});
+    let {
+        isVisible,
+        parentPosition,
+    }: {
+        isVisible: boolean;
+        parentPosition: DOMRect | undefined;
+    } = $props();
+    let left = $derived.by(() => {
+        const inner = parentPosition?.left!;
+        return inner - 30;
+    });
+    const signout = import.meta.env.VITE_IRAI_API;
 </script>
 
 {#if isVisible}
     <div class="sticky" style="left: {left}px; top: 50px;">
         <a href="/requests" onclick={() => (isVisible = false)}>Your requests</a
         >
-        <a href="/api/oauth/signout" onclick={() => (isVisible = false)}>Quit</a
+        <a href={signout + "oauth/signout"} onclick={() => (isVisible = false)}
+            >Quit</a
         >
     </div>
 {/if}
