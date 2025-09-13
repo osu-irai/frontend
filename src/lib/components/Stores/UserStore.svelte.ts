@@ -1,5 +1,5 @@
 import { getContext, setContext } from "svelte";
-import type { GetUserSelfResponse } from "../../api/types/responses.ts";
+import type { GetUserSelfResponse } from "$types/responses.ts";
 
 const global_user: GetUserSelfResponse | null = null;
 

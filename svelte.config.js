@@ -23,6 +23,8 @@ const config = {
       "$components/*": "./src/lib/components/*",
       $types: "./src/lib/api/types",
       "$types/*": "./src/lib/api/types/*",
+      "$api": "./src/lib/api",
+      "$api/*": "./src/lib/api/*",
     },
   },
 };

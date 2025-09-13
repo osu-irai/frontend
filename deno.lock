@@ -5,6 +5,7 @@
     "npm:@eslint/js@^9.18.0": "9.27.0",
     "npm:@sveltejs/adapter-auto@6": "6.1.0_@sveltejs+kit@2.37.1__@sveltejs+vite-plugin-svelte@5.1.1___svelte@5.38.7____acorn@8.15.0___vite@6.3.5____sass@1.92.1____picomatch@4.0.3___sass@1.92.1__svelte@5.38.7___acorn@8.15.0__vite@6.3.5___sass@1.92.1___picomatch@4.0.3__acorn@8.15.0__sass@1.92.1_@sveltejs+vite-plugin-svelte@5.1.1__svelte@5.38.7___acorn@8.15.0__vite@6.3.5___sass@1.92.1___picomatch@4.0.3__sass@1.92.1_svelte@5.38.7__acorn@8.15.0_vite@6.3.5__sass@1.92.1__picomatch@4.0.3_sass@1.92.1",
     "npm:@sveltejs/adapter-node@^5.2.12": "5.2.12_@sveltejs+kit@2.37.1__@sveltejs+vite-plugin-svelte@5.1.1___svelte@5.38.7____acorn@8.15.0___vite@6.3.5____sass@1.92.1____picomatch@4.0.3___sass@1.92.1__svelte@5.38.7___acorn@8.15.0__vite@6.3.5___sass@1.92.1___picomatch@4.0.3__acorn@8.15.0__sass@1.92.1_rollup@4.50.0_@sveltejs+vite-plugin-svelte@5.1.1__svelte@5.38.7___acorn@8.15.0__vite@6.3.5___sass@1.92.1___picomatch@4.0.3__sass@1.92.1_svelte@5.38.7__acorn@8.15.0_vite@6.3.5__sass@1.92.1__picomatch@4.0.3_sass@1.92.1",
+    "npm:@sveltejs/kit@2.37.1": "2.37.1_@sveltejs+vite-plugin-svelte@5.1.1__svelte@5.38.7___acorn@8.15.0__vite@6.3.5___sass@1.92.1___picomatch@4.0.3__sass@1.92.1_svelte@5.38.7__acorn@8.15.0_vite@6.3.5__sass@1.92.1__picomatch@4.0.3_acorn@8.15.0_sass@1.92.1",
     "npm:@sveltejs/kit@^2.16.0": "2.37.1_@sveltejs+vite-plugin-svelte@5.1.1__svelte@5.38.7___acorn@8.15.0__vite@6.3.5___sass@1.92.1___picomatch@4.0.3__sass@1.92.1_svelte@5.38.7__acorn@8.15.0_vite@6.3.5__sass@1.92.1__picomatch@4.0.3_acorn@8.15.0_sass@1.92.1",
     "npm:@sveltejs/vite-plugin-svelte@5": "5.1.1_svelte@5.38.7__acorn@8.15.0_vite@6.3.5__sass@1.92.1__picomatch@4.0.3_sass@1.92.1",
     "npm:eslint-plugin-svelte@3": "3.9.0_eslint@9.27.0_svelte@5.38.7__acorn@8.15.0_postcss@8.5.6",
@@ -13,10 +14,12 @@
     "npm:neverthrow@^8.2.0": "8.2.0",
     "npm:sass@^1.88.0": "1.92.1",
     "npm:svelte-check@4": "4.3.1_svelte@5.38.7__acorn@8.15.0_typescript@5.9.2",
+    "npm:svelte-check@4.3.1": "4.3.1_svelte@5.38.7__acorn@8.15.0_typescript@5.9.2",
     "npm:svelte-virtual@~0.6.3": "0.6.3_svelte@5.38.7__acorn@8.15.0",
     "npm:svelte@5": "5.38.7_acorn@8.15.0",
     "npm:typescript-eslint@^8.20.0": "8.33.0_eslint@9.27.0_typescript@5.9.2_@typescript-eslint+parser@8.33.0__eslint@9.27.0__typescript@5.9.2",
     "npm:typescript@5": "5.9.2",
+    "npm:vite@6.3.5": "6.3.5_sass@1.92.1_picomatch@4.0.3",
     "npm:vite@^6.2.5": "6.3.5_sass@1.92.1_picomatch@4.0.3"
   },
   "npm": {

@@ -1,6 +1,6 @@
 import { type Cookies, error, redirect } from "@sveltejs/kit";
-import { getSelfRequests } from "../../lib/api/requests.ts";
-import type { Token } from "../../lib/components/Stores/CookieStore.svelte.ts";
+import { getSelfRequests } from "$api/requests.ts";
+import type { Token } from "$components/Stores/CookieStore.svelte.ts";
 export async function load({ cookies }: { cookies: Cookies }) {
   const osuToken = cookies.get("osuToken");
   if (osuToken === undefined) {

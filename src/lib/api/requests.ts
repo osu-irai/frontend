@@ -1,22 +1,22 @@
 import { Result, ResultAsync } from "neverthrow";
-import type { Token } from "../components/Stores/CookieStore.svelte.ts";
+import type { Token } from "$components/Stores/CookieStore.svelte.ts";
 import {
   type GetRequestsQuery,
   type GetSearchQuery,
   intoQueryString,
   type QueryParams,
-} from "./types/queries.ts";
+} from "$types/queries.ts";
 import type {
   PostRequestBody,
   PostSelfNamedRequestBody,
   PostSelfRequestBody,
-} from "./types/requests.ts";
+} from "$types/requests.ts";
 import type {
   GetBeatmapQueryResponse,
   GetPlayerQueryResponse,
   GetRequestsResponse,
   GetUserSelfResponse,
-} from "./types/responses.ts";
+} from "$types/responses.ts";
 
 /** Base endpoint for API interactions */
 const BASE_PATH = import.meta.env.VITE_IRAI_API;

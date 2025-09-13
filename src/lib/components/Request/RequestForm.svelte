@@ -3,22 +3,21 @@
         getToken,
         type Token,
     } from "$components/Stores/CookieStore.svelte";
-    import { parseFormData } from "./RequestForm";
     import type { Result } from "neverthrow";
     import type {
         GetBeatmapQueryResponse,
         GetPlayerQueryResponse,
     } from "$types/responses";
-    import type { ParseError } from "$types/errors";
     import {
         getSearchBeatmap,
         getSearchPlayer,
         postNamedSelfRequest,
-    } from "$lib/api/requests";
+    } from "$lib/api/requests.ts";
     import BeatmapCompletion from "./Completion/BeatmapCompletion.svelte";
     import UserCompletion from "./Completion/UserCompletion.svelte";
+    import { parseFormData } from "./RequestForm.ts";
     let abortController: AbortController | null = null;
-    let searchTimeout: number | null;
+    let searchTimeout: NodeJS.Timeout | null;
 
     const tok: Result<Token, null> = getToken();
     function makeRequest(
@@ -192,19 +191,6 @@
         width: 200px;
         display: flex;
         flex-direction: column;
-    }
-    .completion {
-        margin-top: 20px;
-        width: 100%;
-        appearance: none;
-        color: inherit;
-        font-family: inherit;
-        background-color: var(--ctp-macchiato-mantle);
-        border: none;
-        outline: 1px solid var(--ctp-macchiato-overlay0);
-    }
-    .completion:hover {
-        outline: 1px solid var(--ctp-macchiato-green);
     }
     input:user-valid {
         outline: none;

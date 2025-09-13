@@ -2,7 +2,8 @@
  * Response types for API requests
  * @module
  */
-import type { BeatmapDTO, UserDTO } from "../types/common.ts";
+
+import type { BeatmapDTO, UserDTO } from "./common.ts";
 
 /**
  * Response return type for "GET /users/self"

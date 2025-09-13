@@ -2,7 +2,7 @@
     import "../app.css";
     import Navbar from "$components/Navbar/Navbar.svelte";
     import { setToken } from "$components/Stores/CookieStore.svelte";
-    import { setUser } from "$components/Stores/UserStore.svelte.js";
+    import { setUser } from "$components/Stores/UserStore.svelte.ts";
     import Footer from "$components/Footer/Footer.svelte";
 
     let { data, children } = $props();

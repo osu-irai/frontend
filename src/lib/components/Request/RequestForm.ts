@@ -1,7 +1,7 @@
 import { err, ok, Result } from "neverthrow";
 import { ParseError } from "$types/errors";
-import { getValueFromForm, parseValueFromRegex } from "$utils/forms.ts";
-import { type PostSelfNamedRequestBody } from "../../api/types/requests.ts";
+import { type PostSelfNamedRequestBody } from "$types/requests.ts";
+import { getValueFromForm, parseValueFromRegex } from "$lib/utils/forms.ts";
 
 function getPlayerFromForm(form: FormData): Result<string, ParseError> {
   return getValueFromForm(
