@@ -16,11 +16,12 @@
     import BeatmapCompletion from "./Completion/BeatmapCompletion.svelte";
     import UserCompletion from "./Completion/UserCompletion.svelte";
     import { parseFormData } from "./RequestForm.ts";
+    import { toasts } from "$components/Toasts/ToastStore.svelte.ts";
     let abortController: AbortController | null = null;
     let searchTimeout: NodeJS.Timeout | null;
 
     const tok: Result<Token, null> = getToken();
-    function makeRequest(
+    async function makeRequest(
         event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement },
     ) {
         event.preventDefault();
@@ -33,7 +34,19 @@
         if (parsedData.isOk()) {
             const inner = parsedData.value;
 
-            postNamedSelfRequest(tok.value, inner);
+            const res = await postNamedSelfRequest(tok.value, inner);
+            if (res.isOk()) {
+                if (res.value.ok) {
+                    toasts.add(
+                        `Created request for ${inner.destinationName}`,
+                        "info",
+                    );
+                } else {
+                    toasts.add(
+                        `Failed to create request: ${res.value.statusText}`,
+                    );
+                }
+            }
         }
     }
     const init: GetPlayerQueryResponse = {

@@ -1,4 +1,5 @@
 <script>
+    import { toasts } from "$components/Toasts/ToastStore.svelte";
 </script>
 
 <p>Welcome to Irai, your best way to request beatmaps!</p>
