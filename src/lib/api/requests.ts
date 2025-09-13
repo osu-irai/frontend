@@ -89,6 +89,22 @@ export function postNamedSelfRequest(
 ): Promise<Result<Response, FetchErrors>> {
   return postData(token, "requests/own", body);
 }
+
+export async function deleteSelfRequest(token: Token, id: number) {
+  const headers = new Headers();
+  headers.append("Cookie", `iraiLogin=${token}`);
+  const url = new URL("requests/own", BASE_PATH);
+  url.search = `?requestId=${id}`;
+  return ResultAsync.fromPromise(
+    fetch(url, {
+      credentials: "include",
+      method: "DELETE",
+      headers: headers,
+    }),
+    (e) => toFetchError("requests/own", e),
+  );
+}
+
 async function getData<T>(
   token: Token,
   endpoint: string,
