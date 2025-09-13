@@ -105,7 +105,7 @@ async function postData(
   body: any,
 ): Promise<Result<Response, FetchErrors>> {
   const headers = new Headers();
-  headers.append("Cookie", `osuToken=${token}`);
+  headers.append("Cookie", `iraiLogin=${token}`);
   headers.append("Content-Type", "application/json");
   const url = new URL(endpoint, BASE_PATH);
   return ResultAsync.fromPromise(
@@ -125,7 +125,7 @@ function fetchFromEndpoint(
   query: QueryParams | undefined,
 ): ResultAsync<Response, FetchError> {
   const headers = new Headers();
-  headers.append("Cookie", `osuToken=${token}`);
+  headers.append("Cookie", `iraiLogin=${token}`);
   const url = new URL(endpoint, BASE_PATH);
   if (query !== undefined) {
     url.search = intoQueryString(query);

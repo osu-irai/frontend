@@ -4,7 +4,7 @@
     const token = getToken();
     let { id, nodeRef }: { id: number; nodeRef: Node } = $props();
     async function delete_request(requestId: number) {
-        headers.append("Cookie", `osuToken=${token}`);
+        headers.append("Cookie", `iraiLogin=${token}`);
         fetch(
             `${import.meta.env.IRAI_API}/requests/own?requestId=${requestId}`,
             {

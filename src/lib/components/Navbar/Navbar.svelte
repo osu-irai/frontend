@@ -2,7 +2,7 @@
     import NavbarButton from "./NavbarButton.svelte";
     import { isAuthenticated } from "$components/Stores/CookieStore.svelte";
     import NavbarHomeButton from "./NavbarHomeButton.svelte";
-    const api = `${import.meta.env.VITE_IRAI_API}oauth/auth`;
+    const api = `${import.meta.env.VITE_IRAI_ROOT}api/oauth/auth`;
 </script>
 
 <nav>
