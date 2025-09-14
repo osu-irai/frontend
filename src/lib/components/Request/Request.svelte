@@ -30,7 +30,6 @@
         border-color: var(--ctp-macchiato-mantle);
         border-style: solid;
         border-width: 3px;
-        min-width: min-content;
         max-width: 100%;
         content-visibility: auto;
     }

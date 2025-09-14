@@ -26,7 +26,7 @@
                 beatmapId={beatmap.beatmapId}
                 beatmapsetId={beatmap.beatmapsetId}
             />
-            <OsuDirect beatmapsetId={beatmap.beatmapsetId} />
+            <OsuDirect beatmapId={beatmap.beatmapId} />
         </div>
     </div>
 </div>
@@ -39,7 +39,6 @@
     }
     .card-size {
         min-height: 120px;
-        height: auto;
         max-height: 250px;
     }
     p {
@@ -66,6 +65,17 @@
     }
     .metadata-side {
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        white-space: nowrap; /* Don't forget this one */
+        text-overflow: ellipsis;
+    }
+    .metadata-side p {
+        max-width: min-content;
+        overflow: hidden;
+        white-space: nowrap; /* Don't forget this one */
+        text-overflow: ellipsis;
     }
     .button-side {
         width: 100%;

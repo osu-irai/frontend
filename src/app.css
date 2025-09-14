@@ -4,6 +4,7 @@ html {
     background: var(--ctp-macchiato-base);
     color: var(--ctp-macchiato-text);
     font-family: "Quicksand", serif;
+    font-weight: 500;
     --default-size: 1rem;
     font-size: var(--default-size);
 }
