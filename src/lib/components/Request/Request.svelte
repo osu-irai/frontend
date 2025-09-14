@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { GetRequestsResponse } from "$types/responses.ts";
-    import Beatmap from "$components/Beatmap.svelte";
+    import Beatmap from "./Beatmap.svelte";
     import Delete from "$components/Icons/Delete.svelte";
     let { data } = $props();
     let nodeRef: Node | undefined = $state();

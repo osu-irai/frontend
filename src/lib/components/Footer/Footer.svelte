@@ -9,7 +9,7 @@
 
 <style>
     .footer {
-        position: absolute;
+        position: fixed;
         text-align: center;
         line-height: 40px;
         margin: 0;

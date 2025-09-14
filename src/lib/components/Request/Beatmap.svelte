@@ -2,6 +2,7 @@
     import type { BeatmapDTO } from "$types/common.ts";
     import Copy from "$components/Icons/Copy.svelte";
     import OsuDirect from "$components/Icons/OsuDirect.svelte";
+    import StarRatingPill from "./StarRatingPill.svelte";
     function getSource(id: number) {
         return `http://assets.ppy.sh/beatmaps/${id}/covers/cover.jpg`;
     }
@@ -18,8 +19,14 @@
     />
     <div class="inner-data card-size">
         <div class="metadata-side">
-            <p>{beatmap.title} - {beatmap.artist}</p>
-            <p>[{beatmap.difficulty}]</p>
+            <p
+                style="font-weight: 600; font-size: 1.3rem; margin: 20px 10px 0 20px;"
+            >
+                {beatmap.title}
+            </p>
+            <p style="margin: 5px 10px 0 20px;">
+                {beatmap.artist}
+            </p>
         </div>
         <div class="button-side">
             <Copy
@@ -29,6 +36,10 @@
             <OsuDirect beatmapId={beatmap.beatmapId} />
         </div>
     </div>
+    <div class="bottom-data">
+        <StarRatingPill starRating={beatmap.stars} />
+        <p>[{beatmap.difficulty}]</p>
+    </div>
 </div>
 
 <style lang="scss">
@@ -36,6 +47,18 @@
     .beatmap {
         overflow: hidden;
         position: relative;
+    }
+    .bottom-data {
+        height: fit-content;
+        background-color: var(--ctp-macchiato-crust);
+        display: flex;
+    }
+    .bottom-data p {
+        max-width: min-content;
+        margin: 5px 10px 10px 10px;
+        overflow: hidden;
+        white-space: nowrap; /* Don't forget this one */
+        text-overflow: ellipsis;
     }
     .card-size {
         min-height: 120px;

@@ -19,9 +19,6 @@
 </div>
 
 <style lang="scss">
-    .box {
-        margin: 20px;
-    }
     .box p {
         text-align: center;
     }

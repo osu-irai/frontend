@@ -22,6 +22,7 @@
         flex-direction: row;
         align-items: flex-start;
         align-content: flex-start;
-        margin: 20px 20px 40px 20px;
+        margin: 20px 0 40px 0;
+        width: 100%;
     }
 </style>
