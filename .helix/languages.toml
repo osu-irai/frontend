@@ -1,0 +1,31 @@
+[[language]]
+name = "typescript"
+roots = ["deno.json", "deno.jsonc", "package.json"]
+indent = { tab-width = 4, unit = " " }
+file-types = ["ts", "tsx"]
+language-servers = [ { name = "deno-lsp" } ]
+auto-format = true
+
+[[language]]
+name = "javascript"
+roots = ["deno.json", "deno.jsonc", "package.json"]
+indent = { tab-width = 4, unit = " " }
+file-types = ["js", "jsx"]
+language-servers = [ { name = "deno-lsp" } ]
+auto-format = true
+
+[[language]]
+name = "svelte"
+scope = "source.svelte"
+injection-regex = "svelte"
+file-types = ["svelte"]
+indent = { tab-width = 4, unit = " " }
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ { name = "svelteserver" } ]
+auto-format = true
+
+[language-server.deno-lsp]
+command = "deno"
+args = ["lsp"]
+config.deno.enable = true
