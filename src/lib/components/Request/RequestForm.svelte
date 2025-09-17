@@ -30,22 +30,26 @@
             return;
         }
         const parsedData = parseFormData(data);
-        console.log(parsedData);
-        if (parsedData.isOk()) {
-            const inner = parsedData.value;
+        if (parsedData.isErr()) {
+            toasts.add(`Failed to parse form data: ${parsedData.error}`);
+            return;
+        }
 
-            const res = await postNamedSelfRequest(tok.value, inner);
-            if (res.isOk()) {
-                if (res.value.ok) {
-                    toasts.add(
-                        `Created request for ${inner.destinationName}`,
-                        "info",
-                    );
-                } else {
-                    toasts.add(
-                        `Failed to create request: ${res.value.statusText}`,
-                    );
-                }
+        const inner = parsedData.value;
+
+        const res = await postNamedSelfRequest(tok.value, inner);
+        if (res.isOk()) {
+            if (res.value.ok) {
+                toasts.add(
+                    `Created request for ${inner.destinationName}`,
+                    "info",
+                );
+            } else {
+                toasts.add(
+                    `Failed to create request: ${res.value.status} - ${await res.value.text()}`,
+                    "error",
+                );
+                return;
             }
         }
     }
