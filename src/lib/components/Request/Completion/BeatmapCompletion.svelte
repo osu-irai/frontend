@@ -25,10 +25,6 @@
 
 <style lang="scss">
     @use "sass:color";
-    .beatmap {
-        overflow: hidden;
-        position: relative;
-    }
     .card-size {
         width: 200px;
         height: 80px;
@@ -74,25 +70,5 @@
     }
     button:active {
         outline: 2px solid var(--ctp-macchiato-blue);
-    }
-    .inner-data {
-        margin: 0;
-        padding: 0;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: stretch;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .metadata-side {
-        height: 100%;
-    }
-    .button-side {
-        width: 100%;
-        max-width: 40px;
-        height: auto;
-        max-height: 120px;
     }
 </style>

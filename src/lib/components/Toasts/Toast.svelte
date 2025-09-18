@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { toasts } from "$components/Toasts/ToastStore.svelte.ts";
 </script>
 

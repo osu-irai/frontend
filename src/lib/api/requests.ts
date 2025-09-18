@@ -78,8 +78,8 @@ export function getSearchBeatmap(
 export function getRequest(
   token: Token,
   body: GetRequestsQuery,
-): Promise<Result<GetRequestsResponse, FetchErrors>> {
-  return getData<GetRequestsResponse>(token, "requests", body);
+): Promise<Result<GetRequestsResponse[], FetchErrors>> {
+  return getData<GetRequestsResponse[]>(token, "requests", body);
 }
 
 export function postRequest(
