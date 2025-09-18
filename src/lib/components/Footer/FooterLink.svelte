@@ -2,6 +2,10 @@
     const { string, link } = $props();
 </script>
 
+<!--
+@component
+Footer link
+-->
 <a href={link}>{string}</a>
 
 <style>

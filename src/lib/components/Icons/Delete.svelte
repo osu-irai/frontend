@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getToken } from "$components/Stores/CookieStore.svelte";
     import { deleteSelfRequest } from "$api/requests";
-    import { toasts } from "$components/Toasts/ToastStore.svelte";
+    import { toasts } from "$components/Stores/ToastStore.svelte";
     const headers = new Headers();
     const token = getToken();
     let { id, nodeRef }: { id: number; nodeRef: Node } = $props();

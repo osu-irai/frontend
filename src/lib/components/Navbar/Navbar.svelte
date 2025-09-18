@@ -5,6 +5,10 @@
     const api = `${import.meta.env.VITE_IRAI_ROOT}api/oauth/auth`;
 </script>
 
+<!--
+@component
+Navigation bar. Always displayed at the top
+-->
 <nav>
     <NavbarButton text="Home" destination="/"></NavbarButton>
     <NavbarButton text="Create a request!" destination="/requests/create" />

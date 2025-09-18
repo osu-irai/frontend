@@ -3,7 +3,7 @@
     import Copy from "$components/Icons/Copy.svelte";
     import OsuDirect from "$components/Icons/OsuDirect.svelte";
     import StarRatingPill from "./StarRatingPill.svelte";
-    function getSource(id: number) {
+    function getSource(id: number): string {
         return `http://assets.ppy.sh/beatmaps/${id}/covers/cover.jpg`;
     }
     let { beatmap }: { beatmap: BeatmapDTO } = $props();

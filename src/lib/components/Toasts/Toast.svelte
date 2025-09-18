@@ -1,7 +1,11 @@
-<script lang="ts">
-    import { toasts } from "$components/Toasts/ToastStore.svelte.ts";
+<script>
+    import { toasts } from "$components/Stores/ToastStore.svelte.ts";
 </script>
 
+<!--
+@component
+Base container for toast notification display
+ -->
 {#if $toasts.length > 0}
     <div class="toast-container">
         {#each $toasts as toast (toast.id)}

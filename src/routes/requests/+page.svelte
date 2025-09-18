@@ -2,10 +2,10 @@
     import Request from "$components/Request/Request.svelte";
     import type {
         GetRequestsResponse,
-        GetUserSelfResponse,
+        GetUserResponse,
     } from "$types/responses.ts";
     const { data } = $props();
-    const user: GetUserSelfResponse = data.user!;
+    const user: GetUserResponse = data.user!;
     const requests: GetRequestsResponse[] = data.requests!;
 </script>
 

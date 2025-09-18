@@ -10,9 +10,9 @@ import type { BeatmapDTO, UserDTO } from "./common.ts";
  * @property {UserDTO} user - Information about the user
  * @property {number} requestCount - Amount of requests a user has
  */
-export type GetUserSelfResponse = {
-  user: UserDTO;
-  requestCount: number;
+export type GetUserResponse = {
+    user: UserDTO;
+    requestCount: number;
 };
 
 /**
@@ -22,9 +22,9 @@ export type GetUserSelfResponse = {
  * @property {UserDTO} from - Information about the author of the request
  */
 export type GetRequestsResponse = {
-  id: number;
-  beatmap: BeatmapDTO;
-  from: UserDTO;
+    id: number;
+    beatmap: BeatmapDTO;
+    from: UserDTO;
 };
 
 /**
@@ -33,8 +33,8 @@ export type GetRequestsResponse = {
  * @property {number} count - Total player count found
  */
 export type GetPlayerQueryResponse = {
-  players: Array<UserDTO>;
-  count: number;
+    players: Array<UserDTO>;
+    count: number;
 };
 /**
  * Response return type for "GET /search/beatmap"
@@ -42,6 +42,6 @@ export type GetPlayerQueryResponse = {
  * @property {number} count - Total player count found
  */
 export type GetBeatmapQueryResponse = {
-  beatmaps: Array<BeatmapDTO>;
-  count: number;
+    beatmaps: Array<BeatmapDTO>;
+    count: number;
 };

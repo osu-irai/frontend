@@ -2,6 +2,10 @@
     import FooterLink from "./FooterLink.svelte";
 </script>
 
+<!--
+@component
+Footer block with basic misc links
+-->
 <div class="footer">
     <FooterLink string="about" link="/about" />
     <FooterLink string="contact" link="/contact" />

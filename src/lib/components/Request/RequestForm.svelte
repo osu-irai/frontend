@@ -16,7 +16,7 @@
     import BeatmapCompletion from "./Completion/BeatmapCompletion.svelte";
     import UserCompletion from "./Completion/UserCompletion.svelte";
     import { parseFormData } from "./RequestForm.ts";
-    import { toasts } from "$components/Toasts/ToastStore.svelte.ts";
+    import { toasts } from "$components/Stores/ToastStore.svelte.ts";
     let abortController: AbortController | null = null;
     let searchTimeout: NodeJS.Timeout | null;
 
