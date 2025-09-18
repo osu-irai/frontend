@@ -5,6 +5,7 @@
     import { setUser } from "$components/Stores/UserStore.svelte.ts";
     import Footer from "$components/Footer/Footer.svelte";
     import Toast from "$components/Toasts/Toast.svelte";
+    import { toasts } from "$components/Toasts/ToastStore.svelte.ts";
     let { data, children } = $props();
     if (data.token !== null) {
         setToken(data.token);

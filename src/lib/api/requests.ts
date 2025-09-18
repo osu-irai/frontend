@@ -44,6 +44,12 @@ export function getSelfData(
 ): Promise<Result<GetUserSelfResponse, FetchErrors>> {
   return getData<GetUserSelfResponse>(token, "users/own");
 }
+export function getUserData(
+  user: GetRequestsQuery,
+  token: Token,
+): Promise<Result<GetUserSelfResponse, FetchErrors>> {
+  return getData<GetUserSelfResponse>(token, "users", user);
+}
 export function getSelfRequests(
   token: Token,
 ): Promise<Result<GetRequestsResponse[], FetchErrors>> {
@@ -111,7 +117,7 @@ async function getData<T>(
   query?: QueryParams | undefined,
 ): Promise<Result<T, FetchErrors>> {
   return fetchFromEndpoint(token, endpoint, query).andThen((res) =>
-    jsonFromResponse<T>(res, endpoint)
+    jsonFromResponse<T>(res, endpoint),
   );
 }
 
@@ -160,8 +166,7 @@ function jsonFromResponse<T>(
   response: Response,
   endpoint: string,
 ): ResultAsync<T, DeserializationError> {
-  return ResultAsync.fromPromise(
-    response.json(),
-    () => toDeserializationError(endpoint, response.statusText),
+  return ResultAsync.fromPromise(response.json(), () =>
+    toDeserializationError(endpoint, response.statusText),
   );
 }
