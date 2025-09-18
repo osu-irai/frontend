@@ -34,11 +34,10 @@
         height: 80px;
     }
     .text {
-        margin-left: 5px;
-        margin-right: 5px;
-        padding: 5px;
+        margin: 0;
+        padding-left: 5px;
         position: absolute;
-        width: 100%;
+        width: 90%;
         height: 100%;
         top: 50%;
         left: 50%;
