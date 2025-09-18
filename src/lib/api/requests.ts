@@ -28,16 +28,20 @@ export type DeserializationError = {
     data: string;
 };
 export type FetchErrors = FetchError | DeserializationError;
-const toFetchError = (endpoint: string, e: any): FetchError => ({
-    message: `Failed to fetch ${endpoint}: ${e}`,
-});
-const toDeserializationError = (
+function toFetchError(endpoint: string, e: any): FetchError {
+    return {
+        message: `Failed to fetch ${endpoint}: ${e}`,
+    };
+}
+function toDeserializationError(
     endpoint: string,
     data: string,
-): DeserializationError => ({
-    message: `Failed to deserialize data from ${endpoint}`,
-    data: data,
-});
+): DeserializationError {
+    return {
+        message: `Failed to deserialize data from ${endpoint}`,
+        data: data,
+    };
+}
 
 export function getSelfData(
     token: Token,
@@ -121,14 +125,13 @@ async function getData<T>(
     );
 }
 
+/** POST data to a specified irai endpoint */
 async function postData(
     token: Token,
     endpoint: string,
     body: any,
 ): Promise<Result<Response, FetchErrors>> {
-    const headers = new Headers();
-    headers.append("Cookie", `iraiLogin=${token}`);
-    headers.append("Content-Type", "application/json");
+    const headers = createHeaders(token);
     const url = new URL(endpoint, BASE_PATH);
     return ResultAsync.fromPromise(
         fetch(url, {
@@ -141,17 +144,16 @@ async function postData(
     );
 }
 
+/** Fetch data from a specified irai backend endpoint
+ * Uses a GET request
+ */
 function fetchFromEndpoint(
     token: Token,
     endpoint: string,
     query: QueryParams | undefined,
 ): ResultAsync<Response, FetchError> {
-    const headers = new Headers();
-    headers.append("Cookie", `iraiLogin=${token}`);
-    const url = new URL(endpoint, BASE_PATH);
-    if (query !== undefined) {
-        url.search = intoQueryString(query);
-    }
+    const headers = createHeaders(token);
+    const url = createUrl(endpoint, query);
     return ResultAsync.fromPromise(
         fetch(url, {
             credentials: "include",
@@ -162,6 +164,28 @@ function fetchFromEndpoint(
     );
 }
 
+function makeApiRequest(
+    token: Token,
+    endpoint: string,
+    query: QueryParams | undefined,
+    method: string = "GET",
+) {}
+
+function createHeaders(token: Token): Headers {
+    const headers = new Headers();
+    headers.append("Cookie", `iraiLogin=${token}`);
+    headers.append("Content-Type", "application/json");
+    return headers;
+}
+
+function createUrl(endpoint: string, query?: QueryParams | undefined) {
+    const url = new URL(endpoint, BASE_PATH);
+    if (query !== undefined) {
+        url.search = intoQueryString(query);
+    }
+    return url;
+}
+/** Convert a Response to a T */
 function jsonFromResponse<T>(
     response: Response,
     endpoint: string,

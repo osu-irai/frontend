@@ -13,11 +13,17 @@
  * @property {number} stars - Nomod star rating of the map
  */
 export type BeatmapDTO = {
+    /** ID of the specific difficulty */
     beatmapId: number;
+    /** ID of the beatmapset */
     beatmapsetId: number;
+    /** Artist's name, unicode */
     artist: string;
+    /** Song title, unicode */
     title: string;
+    /** Difficulty name, unicode */
     difficulty: string;
+    /** Star rating of the difficulty */
     stars: number;
 };
 
