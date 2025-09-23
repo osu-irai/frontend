@@ -24,7 +24,11 @@
     bind:this={buttonRect}
 >
     <div class="inner">
-        <img src={user.avatarUrl.toString()} alt="Avatar of user {user.id}" />
+        <img
+            src={user.avatarUrl.toString()}
+            alt="Avatar of user {user.id}"
+            loading="lazy"
+        />
         <div>
             <text>{user.username}</text>
         </div>
