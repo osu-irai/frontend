@@ -9,7 +9,6 @@ import {
 import type {
     PostRequestBody,
     PostSelfNamedRequestBody,
-    PostSelfRequestBody,
 } from "$types/requests.ts";
 import type {
     GetBeatmapQueryResponse,
@@ -17,9 +16,11 @@ import type {
     GetRequestsResponse,
     GetUserResponse,
 } from "$types/responses.ts";
+import { VITE_IRAI_API } from "$env/static/private";
+import type { StringRepresentable } from "$types/util.ts";
 
 /** Base endpoint for API interactions */
-const BASE_PATH = import.meta.env.VITE_IRAI_API;
+const BASE_PATH = VITE_IRAI_API;
 export type FetchError = {
     message: string;
 };
@@ -28,7 +29,7 @@ export type DeserializationError = {
     data: string;
 };
 export type FetchErrors = FetchError | DeserializationError;
-function toFetchError(endpoint: string, e: any): FetchError {
+function toFetchError(endpoint: string, e: unknown): FetchError {
     return {
         message: `Failed to fetch ${endpoint}: ${e}`,
     };

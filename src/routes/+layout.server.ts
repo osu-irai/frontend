@@ -1,9 +1,9 @@
 import type { Cookies } from "@sveltejs/kit";
 import type { Result } from "neverthrow";
-import { type GetUserResponse as GetUserResponse } from "$types/responses.ts";
+import { type GetUserResponse } from "$types/responses.ts";
 import { type Token } from "$components/Stores/CookieStore.svelte.ts";
 import { type FetchErrors, getSelfData } from "$api/requests.ts";
-export async function load({ cookies, url }: { cookies: Cookies; url: URL }) {
+export async function load({ cookies }: { cookies: Cookies }) {
     const osuToken = cookies.get("iraiLogin");
     if (osuToken === undefined) {
         return {
