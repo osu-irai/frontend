@@ -3,8 +3,8 @@ import type { GetUserResponse } from "$types/responses.ts";
 
 const global_user: GetUserResponse | null = null;
 
-export function setUser(user: GetUserResponse | null) {
-    setContext(global_user, user);
+export function setUser(user: GetUserResponse | null): GetUserResponse | null {
+    return setContext(global_user, user);
 }
 
 export function getUser(): GetUserResponse | null {

@@ -18,7 +18,7 @@
     import { parseFormData } from "./RequestForm.ts";
     import { toasts } from "$components/Stores/ToastStore.svelte.ts";
     let abortController: AbortController | null = null;
-    let searchTimeout: NodeJS.Timeout | null;
+    let searchTimeout: number | null;
 
     const tok: Result<Token, null> = getToken();
     async function makeRequest(

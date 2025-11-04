@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { PUBLIC_IRAI_API } from "$env/static/public";
+
     let {
         isVisible,
         parentPosition,
@@ -10,7 +12,7 @@
         const inner = parentPosition?.left!;
         return inner - 30;
     });
-    const signout = `${import.meta.env.VITE_IRAI_ROOT}api/oauth/signout`;
+    const signout = `${PUBLIC_IRAI_API}oauth/signout`;
 </script>
 
 {#if isVisible}

@@ -16,11 +16,11 @@ import type {
     GetRequestsResponse,
     GetUserResponse,
 } from "$types/responses.ts";
-import { VITE_IRAI_API } from "$env/static/private";
 import type { StringRepresentable } from "$types/util.ts";
+import { PUBLIC_IRAI_API } from "$env/static/public";
 
 /** Base endpoint for API interactions */
-const BASE_PATH = VITE_IRAI_API;
+const BASE_PATH = PUBLIC_IRAI_API;
 export type FetchError = {
     message: string;
 };

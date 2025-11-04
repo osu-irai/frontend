@@ -9,3 +9,9 @@
 // interface Platform {}
 // }
 // }
+
+declare namespace App {
+    interface PublicEnv {
+        PUBLIC_IRAI_API: string;
+    }
+}
