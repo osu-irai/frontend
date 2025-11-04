@@ -1,5 +1,6 @@
 <script>
     import { toasts } from "$components/Stores/ToastStore.svelte.ts";
+    import ToastInner from "./ToastInner.svelte";
 </script>
 
 <!--
@@ -11,7 +12,7 @@ Base container for toast notification display
         {#each $toasts as toast (toast.id)}
             <div class="toast toast-{toast.type}">
                 <div class="highlight-{toast.type}"></div>
-                {toast.message}
+                {@render toast.component(toast.data)}
             </div>
         {/each}
     </div>
@@ -63,7 +64,7 @@ Base container for toast notification display
     }
 
     @keyframes slideIn {
-        from {
+        from 0% {
             transform: translateX(100%);
             opacity: 0;
         }

@@ -2,6 +2,7 @@
     import { getToken } from "$components/Stores/CookieStore.svelte";
     import { deleteSelfRequest } from "$api/requests";
     import { toasts } from "$components/Stores/ToastStore.svelte";
+    import { text_embed } from "$components/NotificationEmbeds/TextEmbed.svelte";
     const headers = new Headers();
     const token = getToken();
     let { id, nodeRef }: { id: number; nodeRef: Node } = $props();
@@ -9,13 +10,14 @@
         if (token.isErr()) {
             toasts.add(
                 "Uh oh, your auth token is wrong, try logging out and back in",
+                text_embed,
                 "error",
             );
             return;
         }
         const res = await deleteSelfRequest(token.value, requestId);
         if (res.isOk() && res.value.ok) {
-            toasts.add(`Deleted request ${id}`, "success");
+            toasts.add(`Deleted request ${id}`, text_embed, "success");
         } else {
             toasts.add(`Something went wrong`);
         }

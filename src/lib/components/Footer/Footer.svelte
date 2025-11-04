@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { text_embed } from "$components/NotificationEmbeds/TextEmbed.svelte";
+    import { notificationStore } from "$components/Stores/SignalrStore.svelte";
+    import { toasts } from "$components/Stores/ToastStore.svelte";
     import FooterLink from "./FooterLink.svelte";
 </script>
 
@@ -9,6 +12,12 @@ Footer block with basic misc links
 <div class="footer">
     <FooterLink string="about" link="/about" />
     <FooterLink string="contact" link="/contact" />
+    <!-- <button onclick={() => notificationStore.disconnect()}
+        >DEBUG: Disconnect from notifications</button
+    >
+    <button onclick={() => toasts.add("test", text_embed, "error")}
+        >DEBUG: Notify</button
+    > -->
 </div>
 
 <style>

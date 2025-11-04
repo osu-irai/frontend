@@ -3,6 +3,8 @@ import * as signalR from "@microsoft/signalr";
 import type { GetRequestsResponse } from "$types/responses.ts";
 import { toasts } from "$components/Stores/ToastStore.svelte.ts";
 import { PUBLIC_IRAI_API } from "$env/static/public";
+import { request_embed } from "$components/NotificationEmbeds/RequestEmbed.svelte";
+import { text_embed } from "$components/NotificationEmbeds/TextEmbed.svelte";
 
 function createNotificationStore() {
     const { subscribe, update } = writable<GetRequestsResponse[]>([]);
@@ -21,7 +23,11 @@ function createNotificationStore() {
                     }) => {
                         // Show toast on reconnection attempts
                         if (retryContext.previousRetryCount > 0) {
-                            toasts.add("Reconnecting to server...", "info");
+                            toasts.add(
+                                "Reconnecting to server...",
+                                text_embed,
+                                "info",
+                            );
                         }
                         return Math.min(
                             1000 * Math.pow(2, retryContext.previousRetryCount),
@@ -36,11 +42,11 @@ function createNotificationStore() {
                 update((foos) => [foo, ...foos]);
 
                 // Show toast notification
-                toasts.add(`New notification: ${foo.beatmap.title}`, "success");
+                toasts.add(foo, request_embed, "success");
             });
 
             connection.onclose(() => {
-                toasts.add("Connection lost", "error");
+                toasts.add("Connection lost", text_embed, "error");
             });
 
             try {
@@ -51,6 +57,7 @@ function createNotificationStore() {
                 console.error("SignalR Connection Error:", err);
                 toasts.add(
                     "Failed to connect to notifications. If you see this, reload the page",
+                    text_embed,
                     "error",
                 );
             }

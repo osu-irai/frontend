@@ -17,6 +17,7 @@
     import UserCompletion from "./Completion/UserCompletion.svelte";
     import { parseFormData } from "./RequestForm.ts";
     import { toasts } from "$components/Stores/ToastStore.svelte.ts";
+    import { text_embed } from "$components/NotificationEmbeds/TextEmbed.svelte";
     let abortController: AbortController | null = null;
     let searchTimeout: number | null;
 
@@ -40,13 +41,11 @@
         const res = await postNamedSelfRequest(tok.value, inner);
         if (res.isOk()) {
             if (res.value.ok) {
-                toasts.add(
-                    `Created request for ${inner.destinationName}`,
-                    "info",
-                );
+                toasts.add(`Created request for ${inner.destinationName}`);
             } else {
                 toasts.add(
                     `Failed to create request: ${res.value.status} - ${await res.value.text()}`,
+                    text_embed,
                     "error",
                 );
                 return;
