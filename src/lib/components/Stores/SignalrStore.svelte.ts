@@ -45,6 +45,11 @@ function createNotificationStore() {
                 toasts.add(foo, request_embed, "success");
             });
 
+            connection.on("ReceiveGlobalNotification", (foo: string) => {
+                console.log(foo);
+                toasts.add(`Global notification: ${foo}`, text_embed, "info");
+            });
+
             connection.onclose(() => {
                 toasts.add("Connection lost", text_embed, "error");
             });
