@@ -10,7 +10,7 @@
         <div class="user">Request from {request.from.username}</div>
         <div
             class="beatmap-card"
-            style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url({getSource(
+            style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), center / cover url({getSource(
                 request.beatmap.beatmapsetId,
             )});"
         >
@@ -39,11 +39,7 @@
         height: 80%;
         width: 90%;
         padding: 0 10px;
-        background-size: contain;
-        background-position: center;
         text-align: center;
         border: 2px solid #b7bdf8;
-        background-repeat: no-repeat;
-        backdrop-filter: blur(10px);
     }
 </style>
