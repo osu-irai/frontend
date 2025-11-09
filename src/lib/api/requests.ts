@@ -16,14 +16,18 @@ import type {
     GetRequestsResponse,
     GetUserResponse,
 } from "$types/responses.ts";
-import type { StringRepresentable } from "$types/util.ts";
-import { PUBLIC_IRAI_API } from "$env/static/public";
+import { browser } from "$app/environment";
 
+function public_url() {
+    return import("$env/static/public").then((a) => a.PUBLIC_IRAI_API);
+}
+function private_url() {
+    return import("$env/static/private").then((a) => a.IRAI_API);
+}
 /** Base endpoint for API interactions */
-const BASE_PATH = PUBLIC_IRAI_API;
-console.log(BASE_PATH);
+const BASE_PATH = browser ? await public_url() : await private_url();
 export type FetchError = {
-  message: string;
+    message: string;
 };
 export type DeserializationError = {
     message: string;
@@ -48,7 +52,7 @@ function toDeserializationError(
 export function getSelfData(
     token: Token,
 ): Promise<Result<GetUserResponse, FetchErrors>> {
-  return getData<GetUserResponse>(token, "users/own");
+    return getData<GetUserResponse>(token, "users/own");
 }
 export function getUserData(
     user: GetRequestsQuery,
