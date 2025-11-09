@@ -6,7 +6,7 @@ export type QueryParams = Record<string, ToStringable>;
  * @property {number} playerId - ID of the player being fetched
  */
 export interface GetRequestsQuery extends QueryParams {
-  playerId: number;
+    playerId: number;
 }
 
 /**
@@ -14,7 +14,7 @@ export interface GetRequestsQuery extends QueryParams {
  * @property {string} query - Username query
  */
 export interface GetSearchQuery extends QueryParams {
-  query: string;
+    query: string;
 }
 
 /**
@@ -22,9 +22,9 @@ export interface GetSearchQuery extends QueryParams {
  * @param {QueryParams} query - Query type
  */
 export function intoQueryString(query: QueryParams): string {
-  const params = new URLSearchParams();
-  (Object.keys(query) as Array<keyof QueryParams>).forEach((key) =>
-    params.append(key, query[key].toString())
-  );
-  return params.toString();
+    const params = new URLSearchParams();
+    (Object.keys(query) as Array<keyof QueryParams>).forEach((key) =>
+        params.append(key, query[key].toString()),
+    );
+    return params.toString();
 }

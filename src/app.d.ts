@@ -11,7 +11,7 @@
 // }
 
 declare namespace App {
-    interface PublicEnv {
-        PUBLIC_IRAI_API: string;
-    }
+  interface PublicEnv {
+    PUBLIC_IRAI_API: string;
+  }
 }
