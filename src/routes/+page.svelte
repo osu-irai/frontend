@@ -1,16 +1,2 @@
 <style>
-    @import url("https://unpkg.com/@catppuccin/palette/css/catppuccin.css");
-    @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
-    :global(html) {
-        background: var(--ctp-macchiato-base);
-        color: var(--ctp-macchiato-text);
-        font-family: "Quicksand", serif;
-        font-weight: 500;
-        --default-size: 1.2rem;
-        font-size: var(--default-size);
-    }
-
-    :global(a) {
-        color: var(--ctp-macchiato-blue);
-    }
 </style>

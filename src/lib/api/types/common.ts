@@ -40,6 +40,14 @@ export type UserDTO = {
 };
 
 /**
+ * Settings DTO
+ * @property {boolean} enable_irc - Is user's IRC enabled
+ */
+export type SettingsDTO = {
+    enableIrc: boolean;
+};
+
+/**
  * Problem details object as defined per [RFC 7807](https://www.rfc-editor.org/rfc/rfc7807)
  * @property {string} type - Problem type as defined per [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986)
  * @property {string} title - Summary of the problem type

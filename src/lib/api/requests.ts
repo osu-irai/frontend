@@ -17,6 +17,7 @@ import type {
     GetUserResponse,
 } from "$types/responses.ts";
 import { browser } from "$app/environment";
+import type { SettingsDTO } from "$types/common";
 
 function public_url() {
     return import("$env/static/public").then((a) => a.PUBLIC_IRAI_API);
@@ -65,6 +66,20 @@ export function getSelfRequests(
 ): Promise<Result<GetRequestsResponse[], FetchErrors>> {
     return getData<GetRequestsResponse[]>(token, "requests/own");
 }
+
+export function getSelfSettings(
+    token: Token,
+): Promise<Result<SettingsDTO | null, FetchErrors>> {
+    return getNullableData<SettingsDTO>(token, "users/own/settings");
+}
+
+export function setSettings(
+    token: Token,
+    settings: SettingsDTO,
+): Promise<Result<Response, FetchErrors>> {
+    return postData(token, "users/own/settings", settings);
+}
+
 export function getSearchPlayer(
     token: Token,
     params: string,
@@ -131,6 +146,15 @@ async function getData<T>(
     );
 }
 
+async function getNullableData<T>(
+    token: Token,
+    endpoint: string,
+    query?: QueryParams | undefined,
+): Promise<Result<T | null, FetchErrors>> {
+    return fetchFromEndpoint(token, endpoint, query).andThen((res) =>
+        jsonFromNullable<T>(res, endpoint),
+    );
+}
 /** POST data to a specified irai endpoint */
 async function postData(
     token: Token,
@@ -139,7 +163,7 @@ async function postData(
 ): Promise<Result<Response, FetchErrors>> {
     const headers = createHeaders(token);
     const url = new URL(endpoint, BASE_PATH);
-    return ResultAsync.fromPromise(
+    const ret = ResultAsync.fromPromise(
         fetch(url, {
             credentials: "include",
             method: "POST",
@@ -148,6 +172,8 @@ async function postData(
         }),
         (e) => toFetchError(endpoint, e),
     );
+    console.log(await ret, body);
+    return ret;
 }
 
 /** Fetch data from a specified irai backend endpoint
@@ -196,7 +222,22 @@ function jsonFromResponse<T>(
     response: Response,
     endpoint: string,
 ): ResultAsync<T, DeserializationError> {
-    return ResultAsync.fromPromise(response.json(), () =>
+    return ResultAsync.fromPromise(response.json() as Promise<T>, () =>
         toDeserializationError(endpoint, response.statusText),
+    );
+}
+
+function jsonFromNullable<T>(
+    response: Response,
+    endpoint: string,
+): ResultAsync<T | null, DeserializationError> {
+    return ResultAsync.fromPromise(
+        response.text().then((text) => {
+            if (!text || text.trim() === "") {
+                return null;
+            }
+            return JSON.parse(text) as T | null;
+        }),
+        () => toDeserializationError(endpoint, response.statusText),
     );
 }
