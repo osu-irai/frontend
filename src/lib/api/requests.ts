@@ -73,6 +73,20 @@ export function getSelfSettings(
     return getNullableData<SettingsDTO>(token, "users/own/settings");
 }
 
+export function getSelfTwitchUsername(
+    token: Token,
+): ResultAsync<string, unknown> {
+    return fetchFromEndpoint(token, "users/own/twitch", undefined).andThen(
+        (data) => {
+            const text = data.text().then((t) => {
+                console.log(t);
+                return t;
+            });
+            return ResultAsync.fromSafePromise(text as Promise<string>);
+        },
+    );
+}
+
 export function setSettings(
     token: Token,
     settings: SettingsDTO,

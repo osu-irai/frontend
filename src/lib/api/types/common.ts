@@ -45,6 +45,7 @@ export type UserDTO = {
  */
 export type SettingsDTO = {
     enableIrc: boolean;
+    enableTwitch: boolean;
 };
 
 /**

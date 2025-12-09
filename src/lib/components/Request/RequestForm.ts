@@ -1,5 +1,5 @@
 import { err, ok, Result } from "neverthrow";
-import { ParseError } from "$types/errors";
+import { ParseError } from "$types/errors.ts";
 import { type PostSelfNamedRequestBody } from "$types/requests.ts";
 import { getValueFromForm, parseValueFromRegex } from "$utils/forms.ts";
 

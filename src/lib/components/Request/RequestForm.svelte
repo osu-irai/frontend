@@ -19,7 +19,7 @@
     import { toasts } from "$components/Stores/ToastStore.svelte.ts";
     import { text_embed } from "$components/NotificationEmbeds/TextEmbed.svelte";
     let abortController: AbortController | null = null;
-    let searchTimeout: number | null;
+    let searchTimeout: NodeJS.Timeout | null;
 
     const tok: Result<Token, null> = getToken();
     async function makeRequest(

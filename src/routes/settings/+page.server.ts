@@ -1,6 +1,10 @@
 import { error, type Cookies, type RequestHandler } from "@sveltejs/kit";
 import type { Token } from "$components/Stores/CookieStore.svelte.ts";
-import { getSelfSettings, setSettings } from "$api/requests.ts";
+import {
+    getSelfSettings,
+    getSelfTwitchUsername,
+    setSettings,
+} from "$api/requests.ts";
 import type { SettingsDTO } from "$types/common.js";
 
 export const actions = {
@@ -19,30 +23,31 @@ export const actions = {
         const data = await request.formData();
 
         const enableIrc = data.get("irc");
+        const enableTwitch = data.get("twitch");
 
-        let irc: boolean = false;
-        if (enableIrc == "on") {
-            irc = true;
-        }
-        if (enableIrc == null) {
-            irc = false;
-        }
+        let irc: boolean = booleanFromForm(enableIrc);
+        let twitch = booleanFromForm(enableTwitch);
         console.log(`irc = ${irc}`);
-        await setSettings(osuToken, { enableIrc: irc });
+        await setSettings(osuToken, { enableIrc: irc, enableTwitch: twitch });
     },
 };
 
+function booleanFromForm(value: FormDataEntryValue | null): boolean {
+    return value == "on" ? true : false;
+}
 export async function load({ cookies }: { cookies: Cookies }) {
     const osuToken = cookies.get("iraiLogin");
     if (osuToken === undefined) {
         error(401, "Cannot open this page without being logged in, sorry!");
     }
     const settings = await getSelfSettings(osuToken as Token);
-    if (settings.isOk()) {
+    const username = await getSelfTwitchUsername(osuToken as Token);
+    if (settings.isOk() && username.isOk()) {
         console.log(settings.value);
         if (settings.value !== null) {
             return {
                 settings: settings.value as SettingsDTO,
+                twitch_username: username.value as string,
             };
         }
         return {

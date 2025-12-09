@@ -7,6 +7,7 @@
     const { data } = $props();
     const user: GetUserResponse = data.user!;
     const requests: GetRequestsResponse[] = data.requests!;
+    console.log(data);
 </script>
 
 <div class="box">
