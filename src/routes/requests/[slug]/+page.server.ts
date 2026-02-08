@@ -24,7 +24,6 @@ export async function load({
         },
         osuToken as Token,
     );
-    console.log(user);
     return {
         user: user.isOk() ? user.value : null,
         requests: requests.isOk() ? requests.value : null,

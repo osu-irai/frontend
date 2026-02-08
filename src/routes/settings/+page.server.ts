@@ -25,9 +25,8 @@ export const actions = {
         const enableIrc = data.get("irc");
         const enableTwitch = data.get("twitch");
 
-        let irc: boolean = booleanFromForm(enableIrc);
-        let twitch = booleanFromForm(enableTwitch);
-        console.log(`irc = ${irc}`);
+        const irc: boolean = booleanFromForm(enableIrc);
+        const twitch = booleanFromForm(enableTwitch);
         await setSettings(osuToken, { enableIrc: irc, enableTwitch: twitch });
     },
 };
@@ -43,7 +42,6 @@ export async function load({ cookies }: { cookies: Cookies }) {
     const settings = await getSelfSettings(osuToken as Token);
     const username = await getSelfTwitchUsername(osuToken as Token);
     if (settings.isOk() && username.isOk()) {
-        console.log(settings.value);
         if (settings.value !== null) {
             return {
                 settings: settings.value as SettingsDTO,

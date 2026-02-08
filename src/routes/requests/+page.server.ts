@@ -11,7 +11,6 @@ export async function load({ cookies }: { cookies: Cookies }) {
     if (settings.isOk() && settings.value === null) {
         redirect(302, "/settings");
     }
-    console.log(settings);
     return {
         requests: requests.isOk() ? requests.value : null,
     };

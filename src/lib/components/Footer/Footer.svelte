@@ -22,7 +22,6 @@ Footer block with basic misc links
 
 <style>
     .footer {
-        position: fixed;
         text-align: center;
         line-height: 40px;
         margin: 0;

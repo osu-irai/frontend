@@ -79,7 +79,6 @@ export function getSelfTwitchUsername(
     return fetchFromEndpoint(token, "users/own/twitch", undefined).andThen(
         (data) => {
             const text = data.text().then((t) => {
-                console.log(t);
                 return t;
             });
             return ResultAsync.fromSafePromise(text as Promise<string>);
@@ -186,7 +185,6 @@ async function postData(
         }),
         (e) => toFetchError(endpoint, e),
     );
-    console.log(await ret, body);
     return ret;
 }
 

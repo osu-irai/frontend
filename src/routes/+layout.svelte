@@ -33,14 +33,36 @@
     });
 </script>
 
-<Navbar />
-{@render children()}
-<Toast />
-<Footer />
+<div id="layout-base">
+    <div id="header-base">
+        <Navbar />
+    </div>
+    <div id="page-base">
+        {@render children()}
+        <Toast />
+    </div>
+    <div id="footer-base">
+        <Footer />
+    </div>
+</div>
 
 <style>
     @import url("https://unpkg.com/@catppuccin/palette/css/catppuccin.css");
     @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+    #layout-base {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    #header-base {
+        flex-shrink: 0;
+    }
+    #page-base {
+        flex-grow: 1;
+    }
+    #footer-base {
+        flex-shrink: 0;
+    }
     :global(html) {
         background: var(--ctp-macchiato-base);
         color: var(--ctp-macchiato-text);

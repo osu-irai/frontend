@@ -10,7 +10,7 @@
 @component
 Navigation bar. Always displayed at the top
 -->
-<nav>
+<nav id="navigation">
     <NavbarButton text="Home" destination="/"></NavbarButton>
     <NavbarButton text="Create a request!" destination="/requests/create" />
     {#if isAuthenticated()}
@@ -21,13 +21,12 @@ Navigation bar. Always displayed at the top
 </nav>
 
 <style lang="scss">
-    nav {
-        height: 1.2vh;
+    #navigation {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
         align-content: flex-start;
-        margin: 20px 0 40px 0;
+        padding: 20px 0;
         width: 100%;
     }
 </style>
